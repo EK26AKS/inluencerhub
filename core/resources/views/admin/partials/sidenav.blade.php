@@ -215,6 +215,14 @@
                     </a>
                 </li>
 
+                <li class="sidebar-menu-item  {{menuActive('admin.social.*')}}">
+                    <a href="{{route('admin.social.index')}}" class="nav-link"
+                       data-default-url="{{ route('admin.social.index') }}">
+                       <i class="menu-icon las la-share-alt-square"></i>
+                        <span class="menu-title">@lang('Social Media') </span>
+                    </a>
+                </li>
+
                 <li class="sidebar-menu-item  {{menuActive('admin.tag.index')}}">
                     <a href="{{route('admin.tag.index')}}" class="nav-link"
                        data-default-url="{{ route('admin.tag.index') }}">

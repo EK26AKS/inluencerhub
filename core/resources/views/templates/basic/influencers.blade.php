@@ -116,29 +116,57 @@
                             </div>
                         </div>
 
+                        {{-- Social Media --}}
+
+
+                        @php
+                            $media = App\Models\Social::all();                           
+                        @endphp
+
+
+                        @if (@$media)
                         <div class="sidebar-widget">
+                            <h6 class="sidebar-widget__title">@lang('Social')</h6>
+                            <div class="checkbox-wrapper">
+                                <div class="custom--checkbox">
+                                    <input class="form-check-input sortSocial" type="checkbox" name="social" value="" id="social0" checked>
+                                    <label class="form-check-label" for="social0">@lang('All Social media')</label>
+                                </div>
+                                @foreach ($media as $media)
+                                    <div class="custom--checkbox my-2">
+                                        <input class="form-check-input sortSocial" type="checkbox" name="social" value="{{ $media->id }}" id="social{{ $media->id }}">
+                                        <label class="form-check-label" for="social{{ $media->id }}">{{ __($media->name) }}</label>
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
+                    @endif
+                        {{-- <div class="sidebar-widget">
                             <h6 class="sidebar-widget__title">@lang('Social')</h6>
                             <div class="radio-wrapper">
                                 <div class="custom--radio my-2">
-                                    <input class="form-check-input sortInfluencer" type="radio" value="" name="sort" id="latest" checked>
-                                    <label class="form-check-label" for="latest">
+                                    <input class="form-check-input sortSocial" type="radio" value="" name="social" id="social-0" checked>
+                                    <label class="form-check-label" for="social1">
                                         @lang('Youtube')
                                     </label>
                                 </div>
                                 <div class="custom--radio my-2">
-                                    <input class="form-check-input sortInfluencer" type="radio" value="" name="sort" id="top_rated">
-                                    <label class="form-check-label" for="top_rated">
+                                    <input class="form-check-input sortSocial" type="radio" value="10" name="social" id="social-1">
+                                    <label class="form-check-label" for="social2">
                                         @lang('Instagram')
                                     </label>
                                 </div>
                                 <div class="custom--radio my-2">
-                                    <input class="form-check-input sortInfluencer" type="radio" value="" name="sort" id="top_rated">
-                                    <label class="form-check-label" for="top_rated">
+                                    <input class="form-check-input sortSocial" type="radio" value="30" name="social" id="social-2">
+                                    <label class="form-check-label" for="social3">
                                         @lang('Facebook')
                                     </label>
-                                </div>
+                                </div>                                
                             </div>
-                        </div>
+                        </div> --}}
+                        {{-- Social Media End --}}
+
+
 
                         <div class="sidebar-widget">
                             <h6 class="sidebar-widget__title">@lang('Sort By')</h6>
@@ -157,6 +185,49 @@
                                 </div>
                             </div>
                         </div>
+
+                        <div class="sidebar-widget">
+                            <h6 class="sidebar-widget__title">@lang('Followers')</h6>
+                            <div class="radio-wrapper">
+                                <div class="custom--radio my-2">
+                                    <input class="form-check-input sortFollowers" type="radio" value="" name="complete_job" id="job0" checked>
+                                    <label class="form-check-label" for="job0">
+                                        @lang('All')
+                                    </label>
+                                </div>
+                                <div class="custom--radio my-2">
+                                    <input class="form-check-input sortFollowers" type="radio" value="10" name="followers" id="followers1">
+                                    <label class="form-check-label" for="followers1">
+                                        @lang('More than 10')
+                                    </label>
+                                </div>
+                                <div class="custom--radio my-2">
+                                    <input class="form-check-input sortFollowers" type="radio" value="300" name="followers" id="followers2">
+                                    <label class="form-check-label" for="followers2">
+                                        @lang('More than 300')
+                                    </label>
+                                </div>
+                                <div class="custom--radio my-2">
+                                    <input class="form-check-input sortFollowers" type="radio" value="500" name="followers" id="followers3">
+                                    <label class="form-check-label" for="followers3">
+                                        @lang('More than 500')
+                                    </label>
+                                </div>
+                                <div class="custom--radio my-2">
+                                    <input class="form-check-input sortFollowers" type="radio" value="800" name="followers" id="followers4">
+                                    <label class="form-check-label" for="followers4">
+                                        @lang('More than 800')
+                                    </label>
+                                </div>
+                                <div class="custom--radio my-2">
+                                    <input class="form-check-input sortFollowers" type="radio" value="1000" name="followers" id="followers5">
+                                    <label class="form-check-label" for="followers5">
+                                        @lang('More than 1000')
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                       
 
                         <div class="sidebar-widget">
                             <h6 class="sidebar-widget__title">@lang('Completed Jobs')</h6>
@@ -195,47 +266,6 @@
                                     <input class="form-check-input completedJob" type="radio" value="100" name="complete_job" id="job5">
                                     <label class="form-check-label" for="job5">
                                         @lang('More than 100')
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="sidebar-widget">
-                            <h6 class="sidebar-widget__title">@lang('Subscriber Count')</h6>
-                            <div class="radio-wrapper">
-                                <div class="custom--radio my-2">
-                                    <input class="form-check-input completedJob" type="radio" value="" name="complete_job" id="job0" checked>
-                                    <label class="form-check-label" for="job0">
-                                        @lang('All')
-                                    </label>
-                                </div>
-                                <div class="custom--radio my-2">
-                                    <input class="form-check-input completedJob" type="radio" value="10" name="complete_job" id="job1">
-                                    <label class="form-check-label" for="job1">
-                                        @lang('Upto 10K')
-                                    </label>
-                                </div>
-                                <div class="custom--radio my-2">
-                                    <input class="form-check-input completedJob" type="radio" value="30" name="complete_job" id="job2">
-                                    <label class="form-check-label" for="job2">
-                                        @lang('Upto 10K to 20K')
-                                    </label>
-                                </div>
-                                <div class="custom--radio my-2">
-                                    <input class="form-check-input completedJob" type="radio" value="50" name="complete_job" id="job3">
-                                    <label class="form-check-label" for="job3">
-                                        @lang('Upto 20K to 30K')
-                                    </label>
-                                </div>
-                                <div class="custom--radio my-2">
-                                    <input class="form-check-input completedJob" type="radio" value="80" name="complete_job" id="job4">
-                                    <label class="form-check-label" for="job4">
-                                        @lang('Upto 30K-40K')
-                                    </label>
-                                </div>
-                                <div class="custom--radio my-2">
-                                    <input class="form-check-input completedJob" type="radio" value="100" name="complete_job" id="job5">
-                                    <label class="form-check-label" for="job5">
-                                        @lang('More than 40K')
                                     </label>
                                 </div>
                             </div>
@@ -285,12 +315,12 @@
             "use strict";
             let page = null;
             $('.loader-wrapper').addClass('d-none');
-            $('.sortCategory, .completedJob, .sortInfluencer').on('click', function() {
+            $('.sortCategory, .completedJob, .sortInfluencer, .sortSocial').on('click', function() {
                 $('#category0').removeAttr('checked', 'checked');
                 if ($('#category0').is(':checked')) {
                     $("input[type='checkbox'][name='category']").not(this).prop('checked', false);
                 }
-
+                
                 if ($("input[type='checkbox'][name='category']:checked").length == 0) {
                     $('#category0').attr('checked', 'checked');
                 }
@@ -303,6 +333,16 @@
                 }
                 fetchInfluencer();
             });
+
+
+            $('.sortSocial, .sortFollowers').on('click', function() {
+                if ($('#social0').is(':checked')) {
+                    $("input[type='checkbox'][name='social']").not(this).prop('checked', false);
+                }
+                fetchInfluencer();
+            });
+
+
 
             $('.country').on('change', function() {
                 fetchInfluencer();
@@ -327,6 +367,7 @@
                 data.search = $('.mySearch').val();
                 data.sort = $('.sortInfluencer:checked').val();
                 data.completedJob = $('.completedJob:checked').val();
+                data.social = $('.sortSocial:checked').val();
                 data.rating = $('.sortRating:checked').val();
                 data.country = $('.country').find(":selected").val();
                 data.categoryId = "{{ @$id }}";

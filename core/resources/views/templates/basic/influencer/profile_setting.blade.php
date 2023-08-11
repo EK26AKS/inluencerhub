@@ -14,11 +14,15 @@
                                             <div class="form-group">
                                                 <div class="profile-thumb text-center">
                                                     <div class="thumb">
-                                                        <img id="upload-img" src="{{ getImage(getFilePath('influencerProfile') . '/' . $influencer->image, getFileSize('influencerProfile'), true) }}" alt="userProfile">
-                                                        <label class="badge badge--icon badge--fill-base update-thumb-icon" for="update-photo"><i class="las la-pen"></i></label>
+                                                        <img id="upload-img"
+                                                            src="{{ getImage(getFilePath('influencerProfile') . '/' . $influencer->image) }}"
+                                                            alt="userProfile">
+                                                        <label class="badge badge--icon badge--fill-base update-thumb-icon"
+                                                            for="update-photo"><i class="las la-pen"></i></label>
                                                     </div>
                                                     <div class="profile__info">
-                                                        <input type="file" name="image" class="form-control d-none" id="update-photo">
+                                                        <input type="file" name="image" class="form-control d-none"
+                                                            id="update-photo">
                                                     </div>
                                                 </div>
                                             </div>
@@ -27,18 +31,22 @@
                                             <div class="row">
                                                 <div class="form-group col-sm-6">
                                                     <label for="firstname" class="col-form-label">@lang('First Name')</label>
-                                                    <input type="text" class="form-control form--control" id="firstname" name="firstname" value="{{ __($influencer->firstname) }}">
+                                                    <input type="text" class="form-control form--control" id="firstname"
+                                                        name="firstname" value="{{ __($influencer->firstname) }}">
                                                 </div>
                                                 <div class="form-group col-sm-6">
                                                     <label for="lastname" class="col-form-label">@lang('Last Name')</label>
-                                                    <input type="text" class="form-control form--control" id="lastname" name="lastname" value="{{ __($influencer->lastname) }}">
+                                                    <input type="text" class="form-control form--control" id="lastname"
+                                                        name="lastname" value="{{ __($influencer->lastname) }}">
                                                 </div>
 
                                                 <div class="form-group col-sm-12">
-                                                    <label for="professional-headline" class="col-form-label">@lang('Profession')</label>
-                                                    <input type="text" class="form-control form--control" id="professional-headline" name="profession" value="{{ __($influencer->profession) }}">
+                                                    <label for="professional-headline"
+                                                        class="col-form-label">@lang('Profession')</label>
+                                                    <input type="text" class="form-control form--control"
+                                                        id="professional-headline" name="profession"
+                                                        value="{{ __($influencer->profession) }}">
                                                 </div>
-
 
                                                 @php
                                                     $categoryId = [];
@@ -48,11 +56,16 @@
                                                 @endphp
 
                                                 <div class="form-group col-sm-12">
-                                                    <label for="professional-headline" class="col-form-label">@lang('Category')</label>
-                                                    <select name="category[]" class="from--control form-control select2-multi-select form-select" multiple>
+                                                    <label for="professional-headline"
+                                                        class="col-form-label">@lang('Genres')</label>
+                                                    <select name="category[]"
+                                                        class="from--control form-control select2-multi-select form-select"
+                                                        multiple>
 
                                                         @foreach ($categories as $category)
-                                                            <option value="{{ $category->id }}" @if (in_array($category->id, $categoryId)) selected @endif>{{ __($category->name) }}</option>
+                                                            <option value="{{ $category->id }}"
+                                                                @if (in_array($category->id, $categoryId)) selected @endif>
+                                                                {{ __($category->name) }}</option>
                                                         @endforeach
                                                     </select>
                                                 </div>
@@ -66,7 +79,8 @@
                                     </div>
 
                                     <div class="col-sm-12 text-end mt-3">
-                                        <button type="button" class="btn btn--dark btn--md cancelBtn">@lang('Cancel')</button>
+                                        <button type="button"
+                                            class="btn btn--dark btn--md cancelBtn">@lang('Cancel')</button>
                                         <button type="submit" class="btn btn--base btn--md">@lang('Submit')</button>
                                     </div>
                                 </form>
@@ -77,14 +91,18 @@
                                 <div class="left">
                                     <div class="profile">
                                         <div class="thumb">
-                                            <img src="{{ getImage(getFilePath('influencerProfile') . '/' . $influencer->image, getFileSize('influencerProfile'), true) }}" alt="profile thumb">
+                                            <img src="{{ getImage(getFilePath('influencerProfile') . '/' . $influencer->image) }}"
+                                                alt="profile thumb">
                                         </div>
                                         <div class="content">
-                                            <h5 class="fw-medium name account-status d-inline-block">{{ __($influencer->fullname) }}</h5>
+                                            <h5 class="fw-medium name account-status d-inline-block">
+                                                {{ __($influencer->fullname) }}</h5>
                                             <h3 class="title fw-normal">{{ __($influencer->profession) }}</h3>
 
                                             <ul class="list d-flex flex-wrap">
-                                                <li><span><i class="las la-user-alt"></i></span>{{ __($influencer->username) }}</li>
+                                                <li><span><i
+                                                            class="las la-user-alt"></i></span>{{ __($influencer->username) }}
+                                                </li>
                                                 <li><i class="las la-envelope"></i> {{ __($influencer->email) }}</li>
                                             </ul>
 
@@ -105,7 +123,8 @@
                                     </div>
                                 </div>
                                 <div class="right">
-                                    <button type="button" class="btn--no-border editbtn border-0"> <i class="la la-edit"></i> @lang('Edit')</button>
+                                    <button type="button" class="btn--no-border editbtn border-0"> <i
+                                            class="la la-edit"></i> @lang('Edit')</button>
                                 </div>
                             </div>
                             <ul class="info d-flex justify-content-between border-top mt-4 flex-wrap gap-3 pt-4">
@@ -151,7 +170,8 @@
             <div class="card custom--card skill-edit d-none mt-5">
                 <div class="card-header d-flex justify-content-between align-items-center flex-wrap border-none">
                     <h6 class="card-title">@lang('Skills')</h6>
-                    <button type="button" class="btn btn--outline-base btn--sm skillBtn"> <i class="la la-plus"></i> @lang('Add New')</button>
+                    <button type="button" class="btn btn--outline-base btn--sm skillBtn"> <i class="la la-plus"></i>
+                        @lang('Add New')</button>
                 </div>
                 <div class="card-body">
                     <form action="{{ route('influencer.skill') }}" method="POST">
@@ -160,19 +180,25 @@
                             @if ($influencer->skills)
                                 @foreach ($influencer->skills as $skill)
                                     <div class="add-skill d-flex gap-2 mb-2">
-                                        <input type="text" name="skills[]" class="form-control form--control" value="{{ $skill }}" required />
-                                        <button class="btn btn--danger @if ($loop->first) remove-disable-btn @else remove-btn @endif" type="button"><i class="las la-times"></i></button>
+                                        <input type="text" name="skills[]" class="form-control form--control"
+                                            value="{{ $skill }}" required />
+                                        <button
+                                            class="btn btn--danger @if ($loop->first) remove-disable-btn @else remove-btn @endif"
+                                            type="button"><i class="las la-times"></i></button>
                                     </div>
                                 @endforeach
                             @else
                                 <div class="add-skill d-flex gap-2  mb-2">
-                                    <input type="text" name="skills[]" class="form-control form--control" placeholder="@lang('Enter your skill')" required />
-                                    <button class="btn btn--danger remove-disable-btn" type="button"><i class="las la-times"></i></button>
+                                    <input type="text" name="skills[]" class="form-control form--control"
+                                        placeholder="@lang('Enter your skill')" required />
+                                    <button class="btn btn--danger remove-disable-btn" type="button"><i
+                                            class="las la-times"></i></button>
                                 </div>
                             @endif
                         </div>
                         <div class="text-end mt-3">
-                            <button type="button" class="btn btn--dark btn--md cancelSkillBtn">@lang('Cancel')</button>
+                            <button type="button"
+                                class="btn btn--dark btn--md cancelSkillBtn">@lang('Cancel')</button>
                             <button class="btn btn--base btn--md">@lang('Submit')</button>
                         </div>
                     </form>
@@ -182,7 +208,8 @@
             <div class="card custom--card influencer-skill mt-5">
                 <div class="card-header d-flex justify-content-between align-items-center flex-wrap border-none">
                     <h6 class="card-title">@lang('Skills')</h6>
-                    <button type="button" class="btn--no-border editSkillbtn border-0"> <i class="la la-edit"></i> @lang('Edit')</button>
+                    <button type="button" class="btn--no-border editSkillbtn border-0"> <i class="la la-edit"></i>
+                        @lang('Edit')</button>
                 </div>
                 <div class="card-body">
                     @if ($influencer->skills)
@@ -202,7 +229,8 @@
             <div class="card custom--card mt-5">
                 <div class="card-header d-flex justify-content-between align-items-center flex-wrap border-none">
                     <h6 class="card-title">@lang('Language')</h6>
-                    <button type="button" class="btn btn--outline-base btn--sm languageBtn"> <i class="la la-plus"></i> @lang('Add New')</button>
+                    <button type="button" class="btn btn--outline-base btn--sm languageBtn"> <i class="la la-plus"></i>
+                        @lang('Add New')</button>
                 </div>
                 <div class="card-body py-0">
                     <div class="row">
@@ -213,14 +241,19 @@
                                         <div class="d-flex justify-content-between align-items-center mb-2 gap-3">
                                             <h6>{{ __($key) }}</h6>
                                             <div class="d-flex gap-sm-2 gap-1">
-                                                <button type="button" class="btn--no-border confirmationBtn border-0" data-action="{{ route('influencer.language.remove', $key) }}" data-question="@lang('Are you sure to removed this language?')" data-btn_class="btn btn--base btn--md"><span class="text--danger"><i class="las la-trash"></i> @lang('Delete')</span></button>
+                                                <button type="button" class="btn--no-border confirmationBtn border-0"
+                                                    data-action="{{ route('influencer.language.remove', $key) }}"
+                                                    data-question="@lang('Are you sure to removed this language?')"
+                                                    data-btn_class="btn btn--base btn--md"><span class="text--danger"><i
+                                                            class="las la-trash"></i> @lang('Delete')</span></button>
                                             </div>
 
                                         </div>
                                         <div class="d-flex my-2 flex-wrap gap-2">
                                             @foreach ($profiencies as $key => $profiency)
                                                 <span class="me-3 py-1">
-                                                    <span class="fw-medium">{{ keyToTitle($key) }}</span>: {{ $profiency }}
+                                                    <span class="fw-medium">{{ keyToTitle($key) }}</span>:
+                                                    {{ $profiency }}
                                                 </span>
                                             @endforeach
                                         </div>
@@ -242,24 +275,160 @@
             <div class="card custom--card mt-5">
                 <div class="card-header d-flex justify-content-between align-items-center flex-wrap border-none">
                     <h6 class="card-title">@lang('Social Links')</h6>
-                    <button type="button" class="btn btn--outline-base btn--sm socialBtn"><i class="la la-plus"></i> @lang('Add New')</button>
+                    <button type="button" class="btn btn--outline-base btn--sm socialBtn"><i class="la la-plus"></i>
+                        @lang('Add New')</button>
                 </div>
+
                 <div class="card-body py-0">
                     @forelse (@$influencer->socialLink as $social)
                         <div class="education-content py-3">
                             <div class="d-flex justify-content-between align-items-center flex-wrap gap-3">
                                 <div class="d-flex flex-wrap">
                                     <span class="text--base me-2">@php  echo $social->social_icon @endphp</span>
-                                    <span class="text-break">{{ __($social->url) }}</span>
+                                    @php
+                                        $media = App\Models\Social::where('id',$social->social_media)->first();
+                                    @endphp
+                                    <span class="text-break">{{ __($social->social_media_name) }}</span>
                                 </div>
+
                                 <div class="d-flex flex-wrap">
                                     <span>{{ __($social->followers) }}</span>
                                     <span class="ms-2">@lang('Followers')</span>
                                 </div>
-                                <div class="d-flex gap-sm-2 gap-1">
-                                    <button type="button" class="btn--no-border editSocialBtn border-0" data-url="{{ $social->url }}" data-social_icon="{{ $social->social_icon }}" data-followers="{{ $social->followers }}" data-action="{{ route('influencer.add.socialLink', $social->id) }}"><span class="text--base"><i class="lar la-edit"></i> @lang('Edit')</span></button>
-                                    <button type="button" class="btn--no-border confirmationBtn border-0" data-action="{{ route('influencer.remove.socialLink', $social->id) }}" data-question="@lang('Are you sure to removed this social link?')" data-btn_class="btn btn--base btn--md"><span class="text--danger"><i class="las la-trash"></i> @lang('Delete')</span></button>
+
+
+                                <div class="d-flex gap-sm-2 gap-1">                                   
+                                    <button type="button" class="btn--no-border editSocialBtn border-0"
+                                        data-url="{{ $social->url }}" data-social_icon="{{ $social->social_icon }}"
+                                        data-followers="{{ $social->followers }}"
+                                        data-action="{{ route('influencer.add.socialLink', $social->id) }}"><span
+                                            class="text--base"><i class="lar la-edit"></i>
+                                            @lang('Edit')</span>
+                                    </button>
+                                    <button type="button" class="btn--no-border confirmationBtn border-0"
+                                        data-action="{{ route('influencer.remove.socialLink', $social->id) }}"
+                                        data-question="@lang('Are you sure to removed this social link?')" data-btn_class="btn btn--base btn--md"><span
+                                            class="text--danger"><i class="las la-trash"></i>
+                                            @lang('Delete')</span>
+                                    </button>
+
+                                    <a class="btn--no-border projsocBtn"  data-bs-toggle="modal" data-bs-target="#add-project{{$social->id}}"><i class="la la-plus"></i>
+                                        @lang('Add New')</a>
+                                    {{-- social Project link modal--}}
+                                    <div id="add-project{{$social->id}}" class="modal fade" tabindex="-1" role="dialog">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title">@lang('Add New Project Link')</h5>
+                                                    <span type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                                                        <i class="las la-times"></i>
+                                                    </span>
+                                                </div>
+                                                <form action="{{ route('influencer.add.projsocial') }}" method="POST"  enctype="multipart/form-data">
+                                                    @csrf
+                                                    <div class="modal-body">        
+                                                        <div class="form-group">
+                                                            <label for="skill" class="col-form-label">@lang('Thumbnail')</label>
+                                                            <div class="input-group">
+                                                                <input type="file" name="thumbnail" class="form-control form--control"
+                                                                    value="{{ old('thumbnail') }}" required>
+                                                            </div>
+                                                        </div>
+                                                        <input type="hidden" name="influencer_id" class="form-control form--control" value="{{ $social->influencer_id }}">
+                                                        <input type="hidden" name="sociallink_id" class="form-control form--control" value="{{ $social->id }}">
+                                                        <div class="form-group">
+                                                            <label for="skill" class="col-form-label">@lang('Project Link/Url')</label>
+                                                            <div class="input-group">
+                                                                <input type="text" name="proj_url" class="form-control form--control"
+                                                                    value="{{ old('proj_url') }}" required>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button class="btn btn--base btn--md w-100">@lang('Submit')</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {{-- endsocial Project link --}}
+                                    
                                 </div>
+                                @php
+                                    $c = App\Models\ProjectLink::where('sociallink_id','=',$social->id)->get();
+                                @endphp
+
+                                @if($c->count() > 0)
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Thumbnail</th>
+                                            <th>Project Url</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>                                        
+                                        @foreach($c as $c)
+                                        <tr>                                      
+                                            {{-- <td><a>{{ $c->thumbnail }}</a></td> --}}
+                                            {{-- <td> <img src="assets/images/thumbnail/{{ $c->thumbnail }}" width="30" height="30"></td>  --}}
+                                            <td> <img src="{{ url('assets/images/thumbnail/'.$c->thumbnail) }}" width="50" height="50"></td> 
+                                        
+                                            <td><a>{{ $c->proj_url }}</a></td>
+                                            <td>
+                                                <button type="button" class="btn--no-border confirmationBtn border-0"
+                                                    data-action="{{ route('influencer.remove.projLink', $c->id) }}"
+                                                    data-question="@lang('Are you sure to removed this social link?')" data-btn_class="btn btn--base btn--md"><span
+                                                        class="text--danger"><i class="las la-trash"></i>
+                                                        @lang('Delete')</span>
+                                                </button>
+                                                <a class="btn--no-border projsocBtn" data-bs-toggle="modal" data-bs-target="#edit-project{{$c->id}}"><i class="la la-pen"></i>
+                                                    @lang('Edit')</a>
+                                                {{-- social Project link modal--}}
+                                                <div id="edit-project{{$c->id}}" class="modal fade" tabindex="-1" role="dialog">
+                                                    <div class="modal-dialog" role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title">@lang('Update Project')</h5>
+                                                                <span type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                                                                    <i class="las la-times"></i>
+                                                                </span>
+                                                            </div>
+                                                            <form action="{{ route('influencer.update.projsocial',$c->id) }}" method="post" enctype="multipart/form-data">
+                                                                {{ csrf_field() }}
+                                                                {{ method_field('put') }}
+                                                                <div class="modal-body">        
+                                                                    <div class="form-group">
+                                                                        <label for="skill" class="col-form-label">@lang('Thumbnail')</label>
+                                                                        <div class="input-group">
+                                                                            <input type="file" name="thumbnail" class="form-control form--control"
+                                                                                value="{{ $c->thumbnail }}" required>
+                                                                        </div>
+                                                                    </div>
+                                                                   
+                                                                    <div class="form-group">
+                                                                        <label for="skill" class="col-form-label">@lang('Project Link/Url')</label>
+                                                                        <div class="input-group">
+                                                                            <input type="text" name="proj_url" class="form-control form--control"
+                                                                                value="{{ $c->proj_url }}" required>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button class="btn btn--base btn--md w-100">@lang('Submit')</button>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                {{-- endsocial Project link --}}
+                                            </td>
+                                        </tr>                                            
+                                        @endforeach
+                                        
+                                    </tbody>
+                                </table>                              
+                                @endif
                             </div>
                         </div>
                     @empty
@@ -270,10 +439,13 @@
                 </div>
             </div>
 
+
+
             <div class="card custom--card mt-5">
                 <div class="card-header d-flex justify-content-between align-items-center flex-wrap border-none">
                     <h6 class="card-title">@lang('Education')</h6>
-                    <button type="button" class="btn btn--outline-base btn--sm educationBtn"> <i class="la la-plus"></i> @lang('Add New')</button>
+                    <button type="button" class="btn btn--outline-base btn--sm educationBtn"> <i class="la la-plus"></i>
+                        @lang('Add New')</button>
                 </div>
                 <div class="card-body py-0">
                     @forelse (@$influencer->education as $education)
@@ -282,9 +454,22 @@
                                 <h6>{{ __($education->degree) }}</h6>
                                 <div class="d-flex gap-sm-2 gap-1">
 
-                                    <button type="button" class="btn--no-border editEduBtn border-0" data-degree="{{ $education->degree }}" data-institute="{{ $education->institute }}" data-country="{{ $education->country }}" data-start_year="{{ $education->start_year }}" data-end_year="{{ $education->end_year }}" data-action="{{ route('influencer.add.education', $education->id) }}"><span class="text--base"><i class="lar la-edit"></i> @lang('Edit')</span></button>
+                                    <button type="button" class="btn--no-border editEduBtn border-0"
+                                        data-degree="{{ $education->degree }}"
+                                        data-institute="{{ $education->institute }}"
+                                        data-country="{{ $education->country }}"
+                                        data-start_year="{{ $education->start_year }}"
+                                        data-end_year="{{ $education->end_year }}"
+                                        data-action="{{ route('influencer.add.education', $education->id) }}"><span
+                                            class="text--base"><i class="lar la-edit"></i>
+                                            @lang('Edit')</span></button>
 
-                                    <button type="button" class="btn--no-border confirmationBtn border-0" data-question="@lang('Are you sure to remove this education?')" data-action="{{ route('influencer.remove.education', $education->id) }}" data-btn_class="btn btn--base btn--md"><span class="text--danger"><i class="las la-trash"></i> @lang('Delete')</span></button>
+                                    <button type="button" class="btn--no-border confirmationBtn border-0"
+                                        data-question="@lang('Are you sure to remove this education?')"
+                                        data-action="{{ route('influencer.remove.education', $education->id) }}"
+                                        data-btn_class="btn btn--base btn--md"><span class="text--danger"><i
+                                                class="las la-trash"></i> @lang('Delete')</span>
+                                    </button>
 
                                 </div>
                             </div>
@@ -304,7 +489,8 @@
             <div class="card custom--card mt-5">
                 <div class="card-header d-flex justify-content-between align-items-center flex-wrap gap-2 border-none">
                     <h6 class="card-title">@lang('Qualifications')</h6>
-                    <button type="button" class="btn btn--outline-base btn--sm qualificationBtn"> <i class="la la-plus"></i> @lang('Add New')</button>
+                    <button type="button" class="btn btn--outline-base btn--sm qualificationBtn"> <i
+                            class="la la-plus"></i> @lang('Add New')</button>
                 </div>
                 <div class="card-body py-0">
                     @forelse (@$influencer->qualification as $qualification)
@@ -313,9 +499,20 @@
                                 <h6>{{ __($qualification->certificate) }}</h6>
                                 <div class="d-flex gap-sm-2 gap-1">
 
-                                    <button type="button" class="btn--no-border editQualifyBtn border-0" data-certificate="{{ $qualification->certificate }}" data-organization="{{ $qualification->organization }}" data-year="{{ $qualification->year }}" data-summary="{{ $qualification->summary }}" data-action="{{ route('influencer.add.qualification', $qualification->id) }}"><span class="text--base"><i class="lar la-edit"></i> @lang('Edit')</span></button>
+                                    <button type="button" class="btn--no-border editQualifyBtn border-0"
+                                        data-certificate="{{ $qualification->certificate }}"
+                                        data-organization="{{ $qualification->organization }}"
+                                        data-year="{{ $qualification->year }}"
+                                        data-summary="{{ $qualification->summary }}"
+                                        data-action="{{ route('influencer.add.qualification', $qualification->id) }}"><span
+                                            class="text--base"><i class="lar la-edit"></i>
+                                            @lang('Edit')</span></button>
 
-                                    <button type="button" class="btn--no-border confirmationBtn border-0" data-question="@lang('Are you sure to remove this qualification?')" data-action="{{ route('influencer.remove.qualification', $qualification->id) }}" data-btn_class="btn btn--base btn--md"><span class="text--danger"><i class="las la-trash"></i> @lang('Delete')</span></button>
+                                    <button type="button" class="btn--no-border confirmationBtn border-0"
+                                        data-question="@lang('Are you sure to remove this qualification?')"
+                                        data-action="{{ route('influencer.remove.qualification', $qualification->id) }}"
+                                        data-btn_class="btn btn--base btn--md"><span class="text--danger"><i
+                                                class="las la-trash"></i> @lang('Delete')</span></button>
 
                                 </div>
                             </div>
@@ -349,20 +546,48 @@
                         <div class="form-group">
                             <label for="skill" class="col-form-label">@lang('Social Icon')</label>
                             <div class="input-group">
-                                <input type="text" class="form-control form--control iconPicker icon" autocomplete="off" name="social_icon" required>
-                                <span class="input-group-text input-group-addon" data-icon="las la-home" role="iconpicker"></span>
+                                <input type="text" class="form-control form--control iconPicker icon"
+                                    autocomplete="off" name="social_icon" required>
+                                <span class="input-group-text input-group-addon" data-icon="las la-home"
+                                    role="iconpicker"></span>
                             </div>
                         </div>
+                        @php
+                            $influencerId = authInfluencerId();
+                            $tb = App\Models\SocialLink::where('influencer_id',$influencerId)->select('social_media')->get();
+                            $media = App\Models\Social::all()->pluck('name','id');                          
+                        @endphp
+                        <div class="form-group">
+                            <label for="skill" class="col-form-label">@lang('Social Media Name')</label>
+                            <div class="input-group">
+                                <select name="social_media"
+                                    class="form-control form--control form-select" required>
+                                    <option value="">Select Social media</option>
+                                    @foreach($media as $id => $media)
+                                        <option value="{{ $id }}">{{ $media }}</option>
+                                    @endforeach
+                                    {{-- <option value="Youtube">Youtube</option>
+                                    <option value="Twitter">Twitter</option>
+                                    <option value="Instagram">Instagram</option>
+                                    <option value="Facebook">Facebook</option> --}}
+                                </select>
+                            </div>
+                        </div>
+
+
+
                         <div class="form-group">
                             <label for="skill" class="col-form-label">@lang('Follower\'s')</label>
                             <div class="input-group">
-                                <input type="text" name="followers" class="form-control form--control" value="{{ old('followers') }}" required>
+                                <input type="text" name="followers" class="form-control form--control"
+                                    value="{{ old('followers') }}" required>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="skill" class="col-form-label">@lang('Url')</label>
+                            <label for="skill" class="col-form-label">@lang('Url/Channel Link')</label>
                             <div class="input-group">
-                                <input type="text" name="url" class="form-control form--control" value="{{ old('url') }}" required>
+                                <input type="text" name="url" class="form-control form--control"
+                                    value="{{ old('url') }}" required>
                             </div>
                         </div>
                     </div>
@@ -373,6 +598,7 @@
             </div>
         </div>
     </div>
+
 
     <div id="languageModal" class="modal fade" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
@@ -404,11 +630,13 @@
                                     <label for="basic-listening">@lang('Basic')</label>
                                 </div>
                                 <div class="form-group custom--radio">
-                                    <input id="medium-listening" type="radio" name="listening" value="Medium" required>
+                                    <input id="medium-listening" type="radio" name="listening" value="Medium"
+                                        required>
                                     <label for="medium-listening">@lang('Medium')</label>
                                 </div>
                                 <div class="form-group custom--radio">
-                                    <input id="fluent-listening" type="radio" name="listening" value="Fluent" required>
+                                    <input id="fluent-listening" type="radio" name="listening" value="Fluent"
+                                        required>
                                     <label for="fluent-listening">@lang('Fluent')</label>
                                 </div>
                             </div>
@@ -480,19 +708,23 @@
                             </div>
                             <div class="form-group col-md-6">
                                 <label class="col-form-label">@lang('University/College')</label>
-                                <input type="text" name="institute" class="form-control form--control" value="{{ old('institute') }}" required>
+                                <input type="text" name="institute" class="form-control form--control"
+                                    value="{{ old('institute') }}" required>
                             </div>
                             <div class="form-group col-md-12">
                                 <label class="col-form-label">@lang('Degree')</label>
-                                <input type="text" name="degree" class="form-control form--control" value="{{ old('degree') }}" required>
+                                <input type="text" name="degree" class="form-control form--control"
+                                    value="{{ old('degree') }}" required>
                             </div>
                             <div class="form-group col-md-6">
                                 <label class="col-form-label">@lang('Start Year')</label>
-                                <select name="start_year" class="form-control form--control form-select start-year" required></select>
+                                <select name="start_year" class="form-control form--control form-select start-year"
+                                    required></select>
                             </div>
                             <div class="form-group col-md-6">
                                 <label class="col-form-label">@lang('End Year')</label>
-                                <select name="end_year" class="form-control form--control form-select end-year" required></select>
+                                <select name="end_year" class="form-control form--control form-select end-year"
+                                    required></select>
                             </div>
                         </div>
                     </div>
@@ -519,11 +751,13 @@
                         <div class="row gy-3">
                             <div class="form-group col-md-6">
                                 <label class="col-form-label">@lang('Professional Certificate or Award')</label>
-                                <input type="text" name="certificate" class="form-control form--control" value="{{ old('certificate') }}" required>
+                                <input type="text" name="certificate" class="form-control form--control"
+                                    value="{{ old('certificate') }}" required>
                             </div>
                             <div class="form-group col-md-6">
                                 <label class="col-form-label">@lang('Conferring Organization')</label>
-                                <input type="text" name="organization" class="form-control form--control" value="{{ old('organization') }}" required>
+                                <input type="text" name="organization" class="form-control form--control"
+                                    value="{{ old('organization') }}" required>
                             </div>
                             <div class="form-group col-md-12">
                                 <label class="col-form-label">@lang('Summary')</label>
@@ -531,7 +765,8 @@
                             </div>
                             <div class="form-group col-md-12">
                                 <label class="col-form-label">@lang('Year')</label>
-                                <select name="year" class="form-control form--control form-select year" required></select>
+                                <select name="year" class="form-control form--control form-select year"
+                                    required></select>
                             </div>
                         </div>
                     </div>
@@ -567,6 +802,7 @@
         }
     </style>
 @endpush
+
 @push('script')
     <script>
         (function($) {
@@ -611,22 +847,45 @@
                 }
             });
 
+
+            ///
             $('.socialBtn').on('click', function() {
                 var modal = $('#socialLinkModal');
                 modal.find('form').attr('action', `{{ route('influencer.add.socialLink') }}`);
                 modal.modal('show')
             });
 
+
             $('.editSocialBtn').on('click', function() {
                 var modal = $('#socialLinkModal');
-                modal.find('.modal-title').text('Update Social Link');
+                modal.find('.modal-title').text('Update Link');
                 var action = $(this).data('action');
                 modal.find('form').attr('action', `${action}`);
-                modal.find('[name=social_icon]').val($(this).data('social_icon'));
+                modal.find('[name=social_icon]').val($(this).data('social_icon'));               
                 modal.find('[name=url]').val($(this).data('url'));
                 modal.find('[name=followers]').val($(this).data('followers'));
                 modal.modal('show')
             });
+            ///
+
+
+            /*$('.projsocBtn').on('click', function() {
+                var modal = $('#projsocialModal');
+                modal.find('form').attr('action', `{{ route('influencer.add.projsocial') }}`);
+                modal.modal('show')
+            });
+
+            $('.editprojsocBtn').on('click', function() {
+                var modal = $('#projsocialModal');
+                modal.find('.modal-title').text('Update Project Link');
+                var action = $(this).data('action');
+                modal.find('form').attr('action', `${action}`);
+                modal.find('[name=thumbnail]').val($(this).data('thumbnail'));
+                modal.find('[name=proj_url]').val($(this).data('proj_url'));              
+                modal.modal('show')
+            });*/
+
+
 
             $('.languageBtn').on('click', function() {
                 var modal = $('#languageModal');
@@ -704,7 +963,8 @@
 
 
             $('.iconPicker').iconpicker().on('iconpickerSelected', function(e) {
-                $(this).closest('.form-group').find('.iconpicker-input').val(`<i class="${e.iconpickerValue}"></i>`);
+                $(this).closest('.form-group').find('.iconpicker-input').val(
+                    `<i class="${e.iconpickerValue}"></i>`);
             });
 
             $('#educationModal').on('hidden.bs.modal', function() {
@@ -722,6 +982,13 @@
             $(".select2-multi-select").select2({
                 dropdownParent: $('.has-select2')
             });
+
+
+            // $("#show").click(function() {
+            //     $("#p").toggle();
+            // });
+
+
 
         })(jQuery);
     </script>

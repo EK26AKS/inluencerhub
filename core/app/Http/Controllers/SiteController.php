@@ -13,6 +13,7 @@ use App\Models\Influencer;
 use App\Models\InfluencerCategory;
 use App\Models\Language;
 use App\Models\Order;
+use App\Models\SocialLink;
 use App\Models\OrderConversation;
 use App\Models\Page;
 use App\Models\Review;
@@ -279,7 +280,11 @@ class SiteController extends Controller {
         $data['queue_job']     = Order::whereIn('status', [2, 3])->where('influencer_id', $id)->count() + Hiring::whereIn('status', [2, 3])->where('influencer_id', $id)->count();
         $data['pending_job']   = Order::pending()->where('influencer_id', $id)->count() + Hiring::pending()->where('influencer_id', $id)->count();
 
-        return view($this->activeTemplate . 'influencer.profile', compact('pageTitle', 'influencer', 'data', 'reviews'));
+        $social_link   = SocialLink::where('influencer_id', $id)->get();
+        // $data['project_link']  = ProjectLink::where('influencer_id', $id)->get();
+
+
+        return view($this->activeTemplate . 'influencer.profile', compact('pageTitle', 'influencer', 'data', 'reviews','social_link'));
     }
 
     public function influencers(Request $request) {
@@ -310,6 +315,8 @@ class SiteController extends Controller {
     protected function getInfluencer($request) {
         $influencers = Influencer::active();
 
+        //dd($influencers);
+
         if ($request->categories) {
             $influencerId = InfluencerCategory::whereIn('category_id', $request->categories)->select('influencer_id')->get();
             $influencers  = $influencers->whereIn('id', $influencerId);
@@ -324,9 +331,9 @@ class SiteController extends Controller {
             $search      = $request->search;
             $influencers = $influencers->where(function ($query) use ($search) {
                 $query->where('firstname', "LIKE", "%$search%")
-                    ->orWhere('lastname', 'LIKE', "%%$search")
-                    ->orWhere('username', 'LIKE', "%$search%")
-                    ->orWhere('profession', 'LIKE', "%$search%");
+                        ->orWhere('lastname', 'LIKE', "%%$search")
+                        ->orWhere('username', 'LIKE', "%$search%")
+                        ->orWhere('profession', 'LIKE', "%$search%");
             });
         }
 
@@ -344,6 +351,16 @@ class SiteController extends Controller {
 
         if ($request->completedJob) {
             $influencers = $influencers->where('completed_order', '>', $request->completedJob)->orderBy('completed_order', 'desc');
+        }
+
+        if ($request->social) {           
+            $influencerId = SocialLink::where('social_media','=',$request->social)->select('influencer_id')->get();
+            $influencers  = $influencers->whereIn('id', $influencerId);
+        }
+
+        if ($request->sortFollowers) {           
+            $influencerId = SocialLink::where('social_media','=',$request->social)->where('followers','>=',$request->followers)->select('influencer_id')->get();
+            $influencers  = $influencers->whereIn('id', $influencerId);
         }
 
         return $influencers->with('socialLink')->orderBy('completed_order', 'desc')->paginate(getPaginate(18));

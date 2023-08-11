@@ -9,4 +9,11 @@ class SocialLink extends Model
 {
     use HasFactory;
     protected $guarded = [];
+
+
+    public function projectlink()
+    {
+        return $this->hasMany(ProjectLink::class);
+    }
+
 }

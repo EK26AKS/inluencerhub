@@ -59,8 +59,6 @@ $emptyMsgImage = getContent('empty_message.content', true);
             <span class="skill m-auto">@lang('No Specific Skill')</span>
             @endif
         </div>
-
-
     </div>
 </div>
 

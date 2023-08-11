@@ -78,11 +78,28 @@ Route::middleware('influencer')->name('influencer.')->group(function () {
                 Route::post('add-qualification/{id?}', 'addQualification')->name('add.qualification');
                 Route::post('remove-qualification/{id}', 'removeQualification')->name('remove.qualification');
 
-                Route::post('add/socialLink/{id?}', 'addSocialLink')->name('add.socialLink');
+                Route::post('add/socialLink/{id?}', 'addSocialLink')->name('add.socialLink');                
                 Route::post('remove-socialLink/{id}', 'removeSocialLink')->name('remove.socialLink');
+
+                Route::post('add/projsocialLink', 'projLink')->name('add.projsocial');
+                Route::put('update/projsocialLink{id}', 'editprojLink')->name('update.projsocial');
+                Route::post('remove-projLink/{id}', 'removeProjLink')->name('remove.projLink');
 
                 Route::get('change-password', 'changePassword')->name('change.password');
                 Route::post('change-password', 'submitPassword');
+
+
+                //For Socialmedia API
+                Route::get('/auth/google', 'redirectToGoogle')->name("google");
+                Route::get('/auth/google/callback', 'handleGoogleCallback');
+               
+                Route::get('auth/twitter', 'redirectToTwitter')->name('twitter');
+                Route::get('auth/twitter/callback', 'handleTwitterCallback');
+
+               
+              
+
+                Route::get('test','test')->name('test');
             });
 
             // Withdraw
@@ -175,6 +192,11 @@ Route::middleware('influencer')->name('influencer.')->group(function () {
                 Route::post('close/{ticket}', 'closeTicket')->name('ticket.close');
                 Route::get('download/{ticket}', 'ticketDownload')->name('ticket.download');
             });
+
+            // Route::controller('SocialmediaController')->prefix('auth')->group(function() {
+            //     Route::get('/google', 'redirectToGoogle')->name("google");
+            //     Route::get('/google/callback', 'handleGoogleCallback');
+            // });
         });
     });
 });

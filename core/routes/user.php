@@ -89,6 +89,7 @@ Route::middleware('auth')->name('user.')->group(function () {
                     Route::post('influencer/hiring/{influencer_id?}/{service_id?}', 'hiringInfluencer')->name('influencer');
 
                     Route::get('/hiring/detail/{id}', 'detail')->name('detail');
+                    
                     Route::post('complete/status/{id}', 'completeStatus')->name('complete.status');
                     Route::post('report/status/{id}', 'reportStatus')->name('report.status');
 

@@ -21,6 +21,7 @@ class PaymentController extends Controller
         $gatewayCurrency = GatewayCurrency::whereHas('method', function ($gate) {
             $gate->where('status', 1);
         })->with('method')->orderby('method_code')->get();
+
         $pageTitle = 'Deposit Methods';
 
         $paymentData = session('payment_data');
@@ -37,13 +38,14 @@ class PaymentController extends Controller
         $gatewayCurrency = GatewayCurrency::whereHas('method', function ($gate) {
             $gate->where('status', 1);
         })->with('method')->orderby('method_code')->get();
+
+                
         $pageTitle = 'Deposit Methods';
         return view($this->activeTemplate . 'user.payment.deposit', compact('gatewayCurrency', 'pageTitle'));
     }
 
     public function depositInsert(Request $request)
     {
-
         $request->validate([
             'amount'      => 'required|numeric|gt:0',
             'method_code' => 'required',

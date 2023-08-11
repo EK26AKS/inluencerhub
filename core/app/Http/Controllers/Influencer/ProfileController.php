@@ -2,16 +2,25 @@
 
 namespace App\Http\Controllers\Influencer;
 
-use App\Http\Controllers\Controller;
-use App\Models\Influencer;
-use App\Models\InfluencerEducation;
-use App\Models\InfluencerQualification;
+use Google\Client;
+use Google_Client;
 use App\Models\Order;
 use App\Models\Service;
+use App\Models\Influencer;
 use App\Models\SocialLink;
-use App\Rules\FileTypeValidate;
+use App\Models\ProjectLink;
+use App\Models\Social; 
+use Google\Service\YouTube;
+use Google_Service_YouTube;
 use Illuminate\Http\Request;
+use App\Rules\FileTypeValidate;
+use App\Models\InfluencerEducation;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\File;
+use App\Models\InfluencerQualification;
+
+use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Validation\Rules\Password;
 
 class ProfileController extends Controller {
@@ -145,11 +154,11 @@ class ProfileController extends Controller {
         return back()->withNotify($notify);
     }
 
-    public function addSocialLink(Request $request, $id = 0) {
+    public function addSocialLink(Request $request, $id=0) {
         $request->validate([
             'social_icon' => 'required',
             'url'         => 'required',
-            'followers'   => 'required|string|max:40',
+            'followers'   => 'required|string|max:40',            
         ]);
 
         $influencerId = authInfluencerId();
@@ -163,9 +172,14 @@ class ProfileController extends Controller {
             $notification          = 'Social link added successfully';
         }
 
+        $social->social_media = $request->social_media;
+        $media =Social::where('id',$social->social_media)->first();
+        $social->social_media_name = $media->name;
+      
         $social->social_icon = $request->social_icon;
         $social->url         = $request->url;
         $social->followers   = $request->followers;
+        //dd($social);
         $social->save();
 
         $notify[] = ['success', $notification];
@@ -179,10 +193,121 @@ class ProfileController extends Controller {
         return back()->withNotify($notify);
     }
 
+
+    public function projLink(Request $request ,$id=0) {
+        $request->validate([
+           'thumbnail'   => 'required',
+          //  'thumbnail'      => ['nullable', 'image', new FileTypeValidate(['jpeg', 'jpg', 'png'])],
+            'proj_url'    => 'required',                       
+        ]);
+
+       // $influencerId = authInfluencerId();
+
+        /*if ($id) {
+            $social       =  ProjectLink::findOrFail($id);
+            $notification = 'Social link updated successfully';
+        } else {
+            $social                = new ProjectLink();
+            $social->influencer_id = $influencerId;
+            $social->sociallink_id = $id;
+            $notification          = 'Social link added successfully';
+        }*/
+
+        $social                = new ProjectLink();
+        $social->influencer_id = $request->influencer_id;
+        $social->sociallink_id = $request->sociallink_id;
+        // $social->thumbnail     = $request->thumbnail;
+        $social->proj_url      = $request->proj_url;     
+       
+        //$social->save();
+        if($request->hasfile('thumbnail'))
+        {
+           $image_file = $request->file('thumbnail');
+           $img_extension = $image_file->getClientOriginalExtension();
+           $img_filename = time().'.'.$img_extension;
+           $image_file->move('assets/images/thumbnail/',$img_filename);          
+           $social->thumbnail = $img_filename;      
+     
+        }
+
+        /*if ($request->hasFile('thumbnail')) {
+            try {
+                $old               = $social->thumbnail;
+                $social->thumbnail = fileUploader($request->image, getFilePath('influencerThumbnail'), getFileSize('influencerThumbnail'), $old);
+            } catch (\Exception$exp) {
+                $notify[] = ['error', 'Couldn\'t upload your image'];
+                return back()->withNotify($notify);
+            }
+
+        }*/
+
+        $social->save();
+        
+        $notification   = 'Project link added successfully';
+        $notify[] = ['success', $notification];
+        return back()->withNotify($notify);
+    }
+
+
+    public function editprojLink($id, Request $request)
+    {
+        $request->validate([
+            'thumbnail'   => 'required',
+            'proj_url'    => 'required',                       
+        ]);
+
+        $social                = ProjectLink::find($id);
+        // $social->thumbnail     = $request->thumbnail;
+        $social->proj_url      = $request->proj_url;     
+
+        
+        
+        if($request->hasfile('thumbnail'))
+        {
+           $filepath_img = 'assets/images/thumbnail/'.$social->thumbnail;
+            if(File::exists($filepath_img))
+            {
+                File::delete($filepath_img);
+            }
+           $image_file = $request->file('thumbnail');
+           $img_extension = $image_file->getClientOriginalExtension();
+           $img_filename = time().'.'.$img_extension;
+           $image_file->move('assets/images/thumbnail/',$img_filename);
+           $social->thumbnail = $img_filename;
+        }
+
+        $social->save();
+        
+
+        $notification    = 'Project updated successfully';
+        $notify[] = ['success', $notification];
+        return back()->withNotify($notify);
+    }
+
+
+
+    public function removeProjLink($id) 
+    {        
+        $social = ProjectLink::find($id);
+        $filepath_file = 'assets/images/thumbnail/'.$social->thumbnail;
+        if(File::exists($filepath_file))
+        {
+            File::delete($filepath_file);
+        }    
+        ProjectLink::where("id", $social->id)->delete();
+
+        $notification          = 'Project deleted successfully';
+        $notify[] = ['success', $notification];
+        return back()->withNotify($notify);
+    }
+
+
     public function changePassword() {
         $pageTitle = 'Change Password';
         return view($this->activeTemplate . 'influencer.password', compact('pageTitle'));
     }
+
+
 
     public function addEducation(Request $request, $id = 0) {
 
@@ -216,12 +341,16 @@ class ProfileController extends Controller {
         return back()->withNotify($notify);
     }
 
+
+
     public function removeEducation($id) {
         $influencerId = authInfluencerId();
         InfluencerEducation::where('influencer_id', $influencerId)->where('id', $id)->delete();
         $notify[] = ['success', 'Education remove successfully'];
         return back()->withNotify($notify);
     }
+
+
 
     public function addQualification(Request $request, $id = 0) {
         $request->validate([
@@ -252,12 +381,16 @@ class ProfileController extends Controller {
         return back()->withNotify($notify);
     }
 
+
+
     public function removeQualification($id) {
         $influencerId = authInfluencerId();
         InfluencerQualification::where('influencer_id', $influencerId)->where('id', $id)->delete();
         $notify[] = ['success', 'Qualification remove successfully'];
         return back()->withNotify($notify);
     }
+
+
 
     public function submitPassword(Request $request) {
 
@@ -287,5 +420,114 @@ class ProfileController extends Controller {
         }
 
     }
+
+
+
+    public function test()
+    {
+        // $f = 'hhh';
+        // dd($f);
+        // return view('influencer.test');
+
+    }
+
+
+    public function redirectToGoogle(Request $request)
+    {
+        // $f = 'hhh';
+        // dd($f);
+        
+        $client = new Google_Client();
+        $client->setClientId(env('GOOGLE_CLIENT_ID'));
+        $client->setClientSecret(env('GOOGLE_CLIENT_SECRET'));
+        $client->setRedirectUri(env('GOOGLE_REDIRECT_URI'));
+        $client->setScopes([Google_Service_YouTube::YOUTUBE_READONLY]);
+        $client->setAccessType('offline');
+        $client->setApprovalPrompt('force');
+
+        return redirect()->away($client->createAuthUrl());
+    }
+
+    public function handleGoogleCallback(Request $request)
+    {
+        $client = new Google_Client();
+        $client->setClientId(env('GOOGLE_CLIENT_ID'));
+        $client->setClientSecret(env('GOOGLE_CLIENT_SECRET'));
+        $client->setRedirectUri(env('GOOGLE_REDIRECT_URI'));
+        $client->setScopes([Google_Service_YouTube::YOUTUBE_READONLY]);
+        $client->setAccessType('offline');
+        $client->setApprovalPrompt('force');
+
+        if ($request->get('code')) {
+            $token = $client->fetchAccessTokenWithAuthCode($request->get('code'));
+            $client->setAccessToken($token);
+   
+            $youtube = new Google_Service_YouTube($client);           
+            $channel = $youtube->channels->listChannels('snippet,statistics', ['mine' => true])->getItems()[0];
+                 
+           // dd($channel);
+
+            $title = $channel->getSnippet()->getTitle();
+                        
+            \App\Models\SocialLink::updateOrCreate(
+                [   'channel_id' => $channel->getId()  ],
+                [
+                    'title' => $channel->getSnippet()->getTitle(),
+                    // 'custom_url'=> $channel->getSnippet()->getCustomUrl(),
+                    'follower' => $channel->getStatistics()->getsubscriberCount(),
+                    'influencer_id' => authInfluencerId(),
+                    // 'description' => $channel->getSnippet()->getDescription(),
+                    // 'thumbnail' => $channel->getSnippet()->getThumbnails()->getDefault()->getUrl(),
+                ]
+            );
+
+        }   
+        return redirect('/')->with('success', 'YouTube channel details saved successfully!');
+    }
+
+
+
+    //twitter
+    public function redirectToTwitter()
+    {
+        return Socialite::driver('twitter')->redirect();
+    }
+          
+
+    public function handleTwitterCallback()
+    {
+        // try {
+        
+            $user = Socialite::driver('twitter')->user();
+            $u = $user->user;  
+            
+            // $d = $u['followers_count'];
+            //dd($d);  
+            dd($user);  
+
+            // $finduser = User::where('twitter_id', $user->id)->first();
+         
+            // if($finduser){         
+            //     Auth::login($finduser);        
+            //     return redirect()->intended('dashboard');
+         
+            // }else{
+                $newUser = SocialLink::updateOrCreate(['email' => $user->email],[
+                        'name' => $user->name,
+                        // 'twitter_id'=> $user->id,                       
+                        'follower' => $u['followers_count'],
+                        'influencer_id' => authInfluencerId(),
+                    ]);
+        
+        //         Auth::login($newUser);
+        
+                 return redirect()->intended('dashboard');
+        //     }
+        
+        // } catch (Exception $e) {
+        //     dd($e->getMessage());
+        // }
+    }
+
 
 }

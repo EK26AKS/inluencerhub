@@ -180,6 +180,7 @@ return [
 
 
         //Yajra\DataTables\DataTablesServiceProvider::class,
+        Laravel\Socialite\SocialiteServiceProvider::class,
 
     ],
 
@@ -198,6 +199,7 @@ return [
         // ...
 
        // 'DataTables' => Yajra\DataTables\Facades\DataTables::class,
+       'Socialite' => Laravel\Socialite\Facades\Socialite::class,
     ])->toArray(),
 
 ];

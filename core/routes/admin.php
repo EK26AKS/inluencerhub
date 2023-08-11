@@ -113,6 +113,13 @@ Route::middleware('admin')->group(function () {
         Route::post('subscriber/send-email', 'sendEmail')->name('subscriber.send.email');
     });
 
+    //Social media 
+    Route::controller('SocialController')->name('social.')->prefix('social')->group(function () {
+        Route::get('', 'index')->name('index');
+        Route::post('store/{id?}', 'store')->name('store');      
+    });
+
+
     // Category
     Route::controller('CategoryController')->name('category.')->prefix('categories')->group(function () {
         Route::get('', 'index')->name('index');

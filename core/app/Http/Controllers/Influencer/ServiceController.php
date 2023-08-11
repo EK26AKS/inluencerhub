@@ -75,6 +75,7 @@ class ServiceController extends Controller {
         }
 
         $notify[] = ['success', $notification];
+
         return to_route('influencer.service.all')->withNotify($notify);
     }
 
@@ -128,10 +129,10 @@ class ServiceController extends Controller {
                 $notify[] = ['error', 'Couldn\'t upload your image'];
                 return back()->withNotify($notify);
             }
-
         }
-
         $service->save();
+        //return to_route('influencer.service.all')->withNotify($notify);
+
         return $service;
     }
 
