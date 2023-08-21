@@ -78,7 +78,7 @@ Route::middleware('influencer')->name('influencer.')->group(function () {
                 Route::post('add-qualification/{id?}', 'addQualification')->name('add.qualification');
                 Route::post('remove-qualification/{id}', 'removeQualification')->name('remove.qualification');
 
-                Route::post('add/socialLink/{id?}', 'addSocialLink')->name('add.socialLink');                
+                Route::post('add/socialLink/{id?}', 'addSocialLink')->name('add.socialLink');
                 Route::post('remove-socialLink/{id}', 'removeSocialLink')->name('remove.socialLink');
 
                 Route::post('add/projsocialLink', 'projLink')->name('add.projsocial');
@@ -92,12 +92,12 @@ Route::middleware('influencer')->name('influencer.')->group(function () {
                 //For Socialmedia API
                 Route::get('/auth/google', 'redirectToGoogle')->name("google");
                 Route::get('/auth/google/callback', 'handleGoogleCallback');
-               
+
                 Route::get('auth/twitter', 'redirectToTwitter')->name('twitter');
                 Route::get('auth/twitter/callback', 'handleTwitterCallback');
 
-               
-              
+
+
 
                 Route::get('test','test')->name('test');
             });

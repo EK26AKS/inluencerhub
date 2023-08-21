@@ -285,8 +285,11 @@
                             <div class="d-flex justify-content-between align-items-center flex-wrap gap-3">
                                 <div class="d-flex flex-wrap">
                                     <span class="text--base me-2">@php  echo $social->social_icon @endphp</span>
+
+                                        {{-- <button type="button" class="btn btn-social-icon btn-outline-facebook"><i class="fa fa-twitter"></i></button> --}}
+
                                     @php
-                                        $media = App\Models\Social::where('id',$social->social_media)->first();
+                                        $media = App\Models\Social::where('id', $social->social_media)->first();
                                     @endphp
                                     <span class="text-break">{{ __($social->social_media_name) }}</span>
                                 </div>
@@ -296,8 +299,8 @@
                                     <span class="ms-2">@lang('Followers')</span>
                                 </div>
 
+                                <div class="d-flex gap-sm-2 gap-1">
 
-                                <div class="d-flex gap-sm-2 gap-1">                                   
                                     <button type="button" class="btn--no-border editSocialBtn border-0"
                                         data-url="{{ $social->url }}" data-social_icon="{{ $social->social_icon }}"
                                         data-followers="{{ $social->followers }}"
@@ -312,122 +315,151 @@
                                             @lang('Delete')</span>
                                     </button>
 
-                                    <a class="btn--no-border projsocBtn"  data-bs-toggle="modal" data-bs-target="#add-project{{$social->id}}"><i class="la la-plus"></i>
+                                    <a class="btn--no-border projsocBtn" data-bs-toggle="modal"
+                                        data-bs-target="#add-project{{ $social->id }}"><i class="la la-plus"></i>
                                         @lang('Add New')</a>
-                                    {{-- social Project link modal--}}
-                                    <div id="add-project{{$social->id}}" class="modal fade" tabindex="-1" role="dialog">
+                                    {{-- social Project link modal --}}
+                                    <div id="add-project{{ $social->id }}" class="modal fade" tabindex="-1"
+                                        role="dialog">
                                         <div class="modal-dialog" role="document">
                                             <div class="modal-content">
                                                 <div class="modal-header">
                                                     <h5 class="modal-title">@lang('Add New Project Link')</h5>
-                                                    <span type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                                                    <span type="button" class="close" data-bs-dismiss="modal"
+                                                        aria-label="Close">
                                                         <i class="las la-times"></i>
                                                     </span>
                                                 </div>
-                                                <form action="{{ route('influencer.add.projsocial') }}" method="POST"  enctype="multipart/form-data">
+                                                <form action="{{ route('influencer.add.projsocial') }}" method="POST"
+                                                    enctype="multipart/form-data">
                                                     @csrf
-                                                    <div class="modal-body">        
+                                                    <div class="modal-body">
                                                         <div class="form-group">
-                                                            <label for="skill" class="col-form-label">@lang('Thumbnail')</label>
+                                                            <label for="skill"
+                                                                class="col-form-label">@lang('Thumbnail')</label>
                                                             <div class="input-group">
-                                                                <input type="file" name="thumbnail" class="form-control form--control"
+                                                                <input type="file" name="thumbnail"
+                                                                    class="form-control form--control"
                                                                     value="{{ old('thumbnail') }}" required>
                                                             </div>
                                                         </div>
-                                                        <input type="hidden" name="influencer_id" class="form-control form--control" value="{{ $social->influencer_id }}">
-                                                        <input type="hidden" name="sociallink_id" class="form-control form--control" value="{{ $social->id }}">
+                                                        <input type="hidden" name="influencer_id"
+                                                            class="form-control form--control"
+                                                            value="{{ $social->influencer_id }}">
+                                                        <input type="hidden" name="sociallink_id"
+                                                            class="form-control form--control"
+                                                            value="{{ $social->id }}">
                                                         <div class="form-group">
-                                                            <label for="skill" class="col-form-label">@lang('Project Link/Url')</label>
+                                                            <label for="skill"
+                                                                class="col-form-label">@lang('Project Link/Url')</label>
                                                             <div class="input-group">
-                                                                <input type="text" name="proj_url" class="form-control form--control"
+                                                                <input type="text" name="proj_url"
+                                                                    class="form-control form--control"
                                                                     value="{{ old('proj_url') }}" required>
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div class="modal-footer">
-                                                        <button class="btn btn--base btn--md w-100">@lang('Submit')</button>
+                                                        <button
+                                                            class="btn btn--base btn--md w-100">@lang('Submit')</button>
                                                     </div>
                                                 </form>
                                             </div>
                                         </div>
                                     </div>
                                     {{-- endsocial Project link --}}
-                                    
+
                                 </div>
                                 @php
-                                    $c = App\Models\ProjectLink::where('sociallink_id','=',$social->id)->get();
+                                    $c = App\Models\ProjectLink::where('sociallink_id', '=', $social->id)->get();
                                 @endphp
 
-                                @if($c->count() > 0)
-                                <table class="table">
-                                    <thead>
-                                        <tr>
-                                            <th>Thumbnail</th>
-                                            <th>Project Url</th>
-                                            <th>Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>                                        
-                                        @foreach($c as $c)
-                                        <tr>                                      
-                                            {{-- <td><a>{{ $c->thumbnail }}</a></td> --}}
-                                            {{-- <td> <img src="assets/images/thumbnail/{{ $c->thumbnail }}" width="30" height="30"></td>  --}}
-                                            <td> <img src="{{ url('assets/images/thumbnail/'.$c->thumbnail) }}" width="50" height="50"></td> 
-                                        
-                                            <td><a>{{ $c->proj_url }}</a></td>
-                                            <td>
-                                                <button type="button" class="btn--no-border confirmationBtn border-0"
-                                                    data-action="{{ route('influencer.remove.projLink', $c->id) }}"
-                                                    data-question="@lang('Are you sure to removed this social link?')" data-btn_class="btn btn--base btn--md"><span
-                                                        class="text--danger"><i class="las la-trash"></i>
-                                                        @lang('Delete')</span>
-                                                </button>
-                                                <a class="btn--no-border projsocBtn" data-bs-toggle="modal" data-bs-target="#edit-project{{$c->id}}"><i class="la la-pen"></i>
-                                                    @lang('Edit')</a>
-                                                {{-- social Project link modal--}}
-                                                <div id="edit-project{{$c->id}}" class="modal fade" tabindex="-1" role="dialog">
-                                                    <div class="modal-dialog" role="document">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                <h5 class="modal-title">@lang('Update Project')</h5>
-                                                                <span type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                                                                    <i class="las la-times"></i>
-                                                                </span>
+                                @if ($c->count() > 0)
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>Thumbnail</th>
+                                                <th>Project Url</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($c as $c)
+                                                <tr>
+                                                    {{-- <td><a>{{ $c->thumbnail }}</a></td> --}}
+                                                    {{-- <td> <img src="assets/images/thumbnail/{{ $c->thumbnail }}" width="30" height="30"></td>  --}}
+                                                    <td> <img src="{{ url('assets/images/thumbnail/' . $c->thumbnail) }}"
+                                                            width="50" height="50"></td>
+
+                                                    <td><a>{{ $c->proj_url }}</a></td>
+                                                    <td>
+                                                        <button type="button"
+                                                            class="btn--no-border confirmationBtn border-0"
+                                                            data-action="{{ route('influencer.remove.projLink', $c->id) }}"
+                                                            data-question="@lang('Are you sure to removed this social link?')"
+                                                            data-btn_class="btn btn--base btn--md"><span
+                                                                class="text--danger"><i class="las la-trash"></i>
+                                                                @lang('Delete')</span>
+                                                        </button>
+                                                        <a class="btn--no-border projsocBtn" data-bs-toggle="modal"
+                                                            data-bs-target="#edit-project{{ $c->id }}"><i
+                                                                class="la la-pen"></i>
+                                                            @lang('Edit')</a>
+                                                        {{-- social Project link modal --}}
+                                                        <div id="edit-project{{ $c->id }}" class="modal fade"
+                                                            tabindex="-1" role="dialog">
+                                                            <div class="modal-dialog" role="document">
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header">
+                                                                        <h5 class="modal-title">@lang('Update Project')</h5>
+                                                                        <span type="button" class="close"
+                                                                            data-bs-dismiss="modal" aria-label="Close">
+                                                                            <i class="las la-times"></i>
+                                                                        </span>
+                                                                    </div>
+                                                                    <form
+                                                                        action="{{ route('influencer.update.projsocial', $c->id) }}"
+                                                                        method="post" enctype="multipart/form-data">
+                                                                        {{ csrf_field() }}
+                                                                        {{ method_field('put') }}
+                                                                        <div class="modal-body">
+                                                                            <div class="form-group">
+                                                                                <label for="skill"
+                                                                                    class="col-form-label">@lang('Thumbnail')</label>
+                                                                                <div class="input-group">
+                                                                                    <input type="file" name="thumbnail"
+                                                                                        class="form-control form--control"
+                                                                                        value="{{ $c->thumbnail }}"
+                                                                                        required>
+                                                                                </div>
+                                                                            </div>
+
+                                                                            <div class="form-group">
+                                                                                <label for="skill"
+                                                                                    class="col-form-label">@lang('Project Link/Url')</label>
+                                                                                <div class="input-group">
+                                                                                    <input type="text" name="proj_url"
+                                                                                        class="form-control form--control"
+                                                                                        value="{{ $c->proj_url }}"
+                                                                                        required>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="modal-footer">
+                                                                            <button
+                                                                                class="btn btn--base btn--md w-100">@lang('Submit')</button>
+                                                                        </div>
+                                                                    </form>
+                                                                </div>
                                                             </div>
-                                                            <form action="{{ route('influencer.update.projsocial',$c->id) }}" method="post" enctype="multipart/form-data">
-                                                                {{ csrf_field() }}
-                                                                {{ method_field('put') }}
-                                                                <div class="modal-body">        
-                                                                    <div class="form-group">
-                                                                        <label for="skill" class="col-form-label">@lang('Thumbnail')</label>
-                                                                        <div class="input-group">
-                                                                            <input type="file" name="thumbnail" class="form-control form--control"
-                                                                                value="{{ $c->thumbnail }}" required>
-                                                                        </div>
-                                                                    </div>
-                                                                   
-                                                                    <div class="form-group">
-                                                                        <label for="skill" class="col-form-label">@lang('Project Link/Url')</label>
-                                                                        <div class="input-group">
-                                                                            <input type="text" name="proj_url" class="form-control form--control"
-                                                                                value="{{ $c->proj_url }}" required>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="modal-footer">
-                                                                    <button class="btn btn--base btn--md w-100">@lang('Submit')</button>
-                                                                </div>
-                                                            </form>
                                                         </div>
-                                                    </div>
-                                                </div>
-                                                {{-- endsocial Project link --}}
-                                            </td>
-                                        </tr>                                            
-                                        @endforeach
-                                        
-                                    </tbody>
-                                </table>                              
+                                                        {{-- endsocial Project link --}}
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+
+                                        </tbody>
+                                    </table>
                                 @endif
                             </div>
                         </div>
@@ -554,16 +586,17 @@
                         </div>
                         @php
                             $influencerId = authInfluencerId();
-                            $tb = App\Models\SocialLink::where('influencer_id',$influencerId)->select('social_media')->get();
-                            $media = App\Models\Social::all()->pluck('name','id');                          
+                            $tb = App\Models\SocialLink::where('influencer_id', $influencerId)
+                                ->select('social_media')
+                                ->get();
+                            $media = App\Models\Social::all()->pluck('name', 'id');
                         @endphp
                         <div class="form-group">
                             <label for="skill" class="col-form-label">@lang('Social Media Name')</label>
                             <div class="input-group">
-                                <select name="social_media"
-                                    class="form-control form--control form-select" required>
+                                <select name="social_media" class="form-control form--control form-select" required>
                                     <option value="">Select Social media</option>
-                                    @foreach($media as $id => $media)
+                                    @foreach ($media as $id => $media)
                                         <option value="{{ $id }}">{{ $media }}</option>
                                     @endforeach
                                     {{-- <option value="Youtube">Youtube</option>
@@ -792,6 +825,8 @@
 @endpush
 
 @push('style')
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
     <style>
         .badge.badge--icon {
             border-radius: 5px 0 0 0;
@@ -799,6 +834,210 @@
 
         .select2-container--open {
             z-index: 99999;
+        }
+
+        /* start */
+
+        .flex {
+            -webkit-box-flex: 1;
+            -ms-flex: 1 1 auto;
+            flex: 1 1 auto
+        }
+
+        @media (max-width:991.98px) {
+            .padding {
+                padding: 1.5rem
+            }
+        }
+
+        @media (max-width:767.98px) {
+            .padding {
+                padding: 1rem
+            }
+        }
+
+        .padding {
+            padding: 3rem
+        }
+
+        .card {
+            box-shadow: none;
+            -webkit-box-shadow: none;
+            -moz-box-shadow: none;
+            -ms-box-shadow: none
+        }
+
+        .card {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            min-width: 0;
+            word-wrap: break-word;
+            background-color: #fff;
+            background-clip: border-box;
+            border: 1px solid #3da5f;
+            border-radius: 0
+        }
+
+        .card .card-body {
+            padding: 1.25rem 1.75rem
+        }
+
+        .card .card-title {
+            color: #000000;
+            margin-bottom: 0.625rem;
+            text-transform: capitalize;
+            font-size: 0.875rem;
+            font-weight: 500
+        }
+
+        .card .card-description {
+            margin-bottom: .875rem;
+            font-weight: 400;
+            color: #76838f
+        }
+
+        .btn.btn-social-icon {
+            width: 50px;
+            height: 50px;
+            padding: 0;
+        }
+
+        .template-demo>.btn {
+            margin-right: 0.5rem !important;
+        }
+
+        .template-demo {
+            margin-top: 0.5rem !important;
+        }
+
+        .btn.btn-rounded {
+            border-radius: 50px;
+        }
+
+
+        .btn-outline-facebook {
+            border: 1px solid #3b579d;
+            color: #3b579d;
+        }
+
+        .btn-outline-facebook:hover {
+            background: #3b579d;
+            color: #ffffff;
+        }
+
+        .btn-outline-youtube {
+            border: 1px solid #e52d27;
+            color: #e52d27;
+        }
+
+        .btn-outline-twitter {
+            border: 1px solid #2caae1;
+            color: #2caae1;
+        }
+
+        .btn-outline-dribbble {
+            border: 1px solid #ea4c89;
+            color: #ea4c89;
+        }
+
+        .btn-outline-linkedin {
+            border: 1px solid #0177b5;
+            color: #0177b5;
+        }
+
+        .btn-outline-instagram {
+            border: 1px solid #dc4a38;
+            color: #dc4a38;
+        }
+
+        .btn-outline-twitter:hover {
+            background: #2caae1;
+            color: #ffffff;
+        }
+
+        .btn-outline-linkedin:hover {
+            background: #0177b5;
+            color: #ffffff;
+        }
+
+        .btn-outline-youtube:hover {
+            background: #e52d27;
+            color: #ffffff;
+        }
+
+        .btn-outline-instagram:hover {
+            background: #e52d27;
+            color: #ffffff;
+        }
+
+
+        /*Button cover*/
+
+        .btn-facebook {
+            background: #3b579d;
+            color: #ffffff;
+        }
+
+        .btn-youtube {
+            background: #e52d27;
+            color: #ffffff;
+        }
+
+        .btn-twitter {
+            background: #2caae1;
+            color: #ffffff;
+        }
+
+        .btn-dribbble {
+            background: #ea4c89;
+            color: #ffffff;
+        }
+
+        .btn-linkedin {
+            background: #0177b5;
+            color: #ffffff;
+        }
+
+        .btn-instagram {
+            background: #dc4a38;
+            color: #ffffff;
+        }
+
+        .btn-facebook:hover,
+        .btn-facebook:focus {
+            background: #2d4278;
+            color: #ffffff;
+        }
+
+        .btn-youtube:hover,
+        .btn-youtube:focus {
+            background: #c21d17;
+            color: #ffffff;
+        }
+
+        .btn-twitter:hover,
+        .btn-twitter:focus {
+            background: #1b8dbf;
+            color: #ffffff;
+        }
+
+        .btn-dribbble:hover,
+        .btn-dribbble:focus {
+            background: #e51e6b;
+            color: #ffffff;
+        }
+
+        .btn-linkedin:hover,
+        .btn-linkedin:focus {
+            background: #015682;
+            color: #ffffff;
+        }
+
+        .btn-instagram:hover,
+        .btn-instagram:focus {
+            background: #bf3322;
+            color: #ffffff;
         }
     </style>
 @endpush
@@ -861,7 +1100,7 @@
                 modal.find('.modal-title').text('Update Link');
                 var action = $(this).data('action');
                 modal.find('form').attr('action', `${action}`);
-                modal.find('[name=social_icon]').val($(this).data('social_icon'));               
+                modal.find('[name=social_icon]').val($(this).data('social_icon'));
                 modal.find('[name=url]').val($(this).data('url'));
                 modal.find('[name=followers]').val($(this).data('followers'));
                 modal.modal('show')
@@ -881,7 +1120,7 @@
                 var action = $(this).data('action');
                 modal.find('form').attr('action', `${action}`);
                 modal.find('[name=thumbnail]').val($(this).data('thumbnail'));
-                modal.find('[name=proj_url]').val($(this).data('proj_url'));              
+                modal.find('[name=proj_url]').val($(this).data('proj_url'));
                 modal.modal('show')
             });*/
 

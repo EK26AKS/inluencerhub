@@ -11,200 +11,210 @@
                                 <thead>
                                 <tr>
                                     <th>@lang('Influencer')</th>
-                                    <th>@lang('Balance')</th>   
-                                    <th>@lang('Action')</th> 
+                                    <th>@lang('Balance')</th>
+                                    <th>@lang('Action')</th>
                                 </tr>
                                 </thead>
-                                <tbody>                              
+                                <tbody>
                                 <tr>
                                     <td>
-                                        <span class="fw-bold">@lang('Balance')</span>    
+                                        <span class="fw-bold">@lang('Balance')</span>
                                     </td>
                                     <td>
-                                        <span class="fw-bold">{{ $general->cur_sym }}{{ showAmount($influencer->balance) }}</span>    
+                                        <span class="fw-bold">{{ $general->cur_sym }}{{ showAmount($influencer->balance) }}</span>
                                     </td>
-                                    <td>                                          
+                                    <td>
                                         <a href="{{ route('admin.report.transaction') }}" class="btn btn-sm btn-outline--info"><i class="las la-eye text--shadow"></i>View</a>
-                                    </td> 
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>
-                                        <span class="fw-bold">@lang('Services')</span>    
+                                        <span class="fw-bold">@lang('Services')</span>
                                     </td>
                                     <td>
-                                        <span class="fw-bold">{{ getAmount($totalService) }}</span>    
+                                        <span class="fw-bold">{{ getAmount($totalService) }}</span>
                                     </td>
-                                    <td>                                          
+                                    <td>
                                         <a href="{{ route('admin.service.index') }}" class="btn btn-sm btn-outline--info"><i class="las la-eye text--shadow"></i>View</a>
-                                    </td> 
-                                </tr>    
-     
+                                    </td>
+                                </tr>
                                 <tr>
                                     <td>
-                                        <span class="fw-bold">@lang('Withdrawals')</span>    
+                                        <span class="fw-bold">@lang('Social')</span>
                                     </td>
                                     <td>
-                                        <span class="fw-bold">{{ $general->cur_sym }}{{ showAmount($totalWithdrawals) }}</span>    
+                                        <span class="fw-bold">Check</span>
                                     </td>
-                                    <td>                                          
+                                    <td>
+                                        <a href="" class="btn btn-sm btn-outline--info"><i class="las la-eye text--shadow"></i>View</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="fw-bold">@lang('Withdrawals')</span>
+                                    </td>
+                                    <td>
+                                        <span class="fw-bold">{{ $general->cur_sym }}{{ showAmount($totalWithdrawals) }}</span>
+                                    </td>
+                                    <td>
                                         <a href="{{ route('admin.withdraw.log') }}" class="btn btn-sm btn-outline--info"><i class="las la-eye text--shadow"></i>View</a>
-                                    </td> 
-                                </tr> 
+                                    </td>
+                                </tr>
                                 <tr>
                                     <td>
-                                        <span class="fw-bold">@lang('Transactions')</span>    
+                                        <span class="fw-bold">@lang('Transactions')</span>
                                     </td>
                                     <td>
-                                        <span class="fw-bold">{{ $totalTransaction }}</span>    
+                                        <span class="fw-bold">{{ $totalTransaction }}</span>
                                     </td>
-                                    <td>                                          
+                                    <td>
                                         <a href="{{ route('admin.report.transaction') }}" class="btn btn-sm btn-outline--info"><i class="las la-eye text--shadow"></i>View</a>
-                                    </td> 
-                                </tr> 
+                                    </td>
+                                </tr>
                                 <tr>
                                     <td>
-                                        <span class="fw-bold">@lang('Pending Order')</span>    
+                                        <span class="fw-bold">@lang('Pending Order')</span>
                                     </td>
                                     <td>
-                                        <span class="fw-bold">{{ $data['pending_order'] }}</span>    
+                                        <span class="fw-bold">{{ $data['pending_order'] }}</span>
                                     </td>
-                                    <td>                                          
+                                    <td>
                                         <a href="{{ route('admin.order.pending') }}" class="btn btn-sm btn-outline--info"><i class="las la-eye text--shadow"></i>View</a>
-                                    </td> 
-                                </tr> 
+                                    </td>
+                                </tr>
                                 <tr>
                                     <td>
-                                        <span class="fw-bold">@lang('Inprogress Order')</span>    
+                                        <span class="fw-bold">@lang('Inprogress Order')</span>
                                     </td>
                                     <td>
-                                        <span class="fw-bold">{{ $data['inprogress_order'] }}</span>    
+                                        <span class="fw-bold">{{ $data['inprogress_order'] }}</span>
                                     </td>
-                                    <td>                                          
+                                    <td>
                                         <a href="{{ route('admin.order.inprogress') }}" class="btn btn-sm btn-outline--info"><i class="las la-eye text--shadow"></i>View</a>
-                                    </td> 
-                                </tr> 
+                                    </td>
+                                </tr>
                                 <tr>
                                     <td>
-                                        <span class="fw-bold">@lang('Inprogress Order')</span>    
+                                        <span class="fw-bold">@lang('Inprogress Order')</span>
                                     </td>
                                     <td>
-                                        <span class="fw-bold">{{ $data['inprogress_order'] }}</span>    
+                                        <span class="fw-bold">{{ $data['inprogress_order'] }}</span>
                                     </td>
-                                    <td>                                          
+                                    <td>
                                         <a href="{{ route('admin.order.inprogress') }}" class="btn btn-sm btn-outline--info"><i class="las la-eye text--shadow"></i>View</a>
-                                    </td> 
-                                </tr> 
+                                    </td>
+                                </tr>
                                 <tr>
                                     <td>
-                                        <span class="fw-bold">@lang('Job Done')</span>    
+                                        <span class="fw-bold">@lang('Job Done')</span>
                                     </td>
                                     <td>
-                                        <span class="fw-bold">{{ $data['job_done_order'] }}</span>    
+                                        <span class="fw-bold">{{ $data['job_done_order'] }}</span>
                                     </td>
-                                    <td>                                          
+                                    <td>
                                         <a href="{{ route('admin.order.jobDone') }}" class="btn btn-sm btn-outline--info"><i class="las la-eye text--shadow"></i>View</a>
-                                    </td> 
-                                </tr> 
+                                    </td>
+                                </tr>
                                 <tr>
                                     <td>
-                                        <span class="fw-bold">@lang('Completed Order')</span>    
+                                        <span class="fw-bold">@lang('Completed Order')</span>
                                     </td>
                                     <td>
-                                        <span class="fw-bold">{{ $data['completed_order'] }}</span>    
+                                        <span class="fw-bold">{{ $data['completed_order'] }}</span>
                                     </td>
-                                    <td>                                          
+                                    <td>
                                         <a href="{{ route('admin.order.completed') }}" class="btn btn-sm btn-outline--info"><i class="las la-eye text--shadow"></i>View</a>
-                                    </td> 
-                                </tr> 
+                                    </td>
+                                </tr>
                                 <tr>
                                     <td>
-                                        <span class="fw-bold">@lang('Reported Order')</span>    
+                                        <span class="fw-bold">@lang('Reported Order')</span>
                                     </td>
                                     <td>
-                                        <span class="fw-bold">{{ $data['reported_order'] }}</span>    
+                                        <span class="fw-bold">{{ $data['reported_order'] }}</span>
                                     </td>
-                                    <td>                                          
+                                    <td>
                                         <a href="{{ route('admin.order.reported') }}" class="btn btn-sm btn-outline--info"><i class="las la-eye text--shadow"></i>View</a>
-                                    </td> 
-                                </tr> 
+                                    </td>
+                                </tr>
                                 <tr>
                                     <td>
-                                        <span class="fw-bold">@lang('Cancelled Order')</span>    
+                                        <span class="fw-bold">@lang('Cancelled Order')</span>
                                     </td>
                                     <td>
-                                        <span class="fw-bold">{{ $data['cancelled_order'] }}</span>    
+                                        <span class="fw-bold">{{ $data['cancelled_order'] }}</span>
                                     </td>
-                                    <td>                                          
+                                    <td>
                                         <a href="{{ route('admin.order.cancelled') }}" class="btn btn-sm btn-outline--info"><i class="las la-eye text--shadow"></i>View</a>
-                                    </td> 
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>
-                                        <span class="fw-bold">@lang('Pending Hiring')</span>    
+                                        <span class="fw-bold">@lang('Pending Hiring')</span>
                                     </td>
                                     <td>
-                                        <span class="fw-bold">{{ $data['pending_hiring'] }}</span>    
+                                        <span class="fw-bold">{{ $data['pending_hiring'] }}</span>
                                     </td>
-                                    <td>                                          
+                                    <td>
                                         <a href="{{ route('admin.order.pending') }}" class="btn btn-sm btn-outline--info"><i class="las la-eye text--shadow"></i>View</a>
-                                    </td> 
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>
-                                        <span class="fw-bold">@lang('Inprogress Hiring')</span>    
+                                        <span class="fw-bold">@lang('Inprogress Hiring')</span>
                                     </td>
                                     <td>
-                                        <span class="fw-bold">{{ $data['inprogress_hiring'] }}</span>    
+                                        <span class="fw-bold">{{ $data['inprogress_hiring'] }}</span>
                                     </td>
-                                    <td>                                          
+                                    <td>
                                         <a href="{{ route('admin.order.inprogress') }}" class="btn btn-sm btn-outline--info"><i class="las la-eye text--shadow"></i>View</a>
-                                    </td> 
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>
-                                        <span class="fw-bold">@lang('Job Done Hiring')</span>    
+                                        <span class="fw-bold">@lang('Job Done Hiring')</span>
                                     </td>
                                     <td>
-                                        <span class="fw-bold">{{ $data['job_done_hiring'] }}</span>    
+                                        <span class="fw-bold">{{ $data['job_done_hiring'] }}</span>
                                     </td>
-                                    <td>                                          
+                                    <td>
                                         <a href="{{ route('admin.order.jobDone') }}" class="btn btn-sm btn-outline--info"><i class="las la-eye text--shadow"></i>View</a>
-                                    </td> 
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>
-                                        <span class="fw-bold">@lang('Completed Hiring')</span>    
+                                        <span class="fw-bold">@lang('Completed Hiring')</span>
                                     </td>
                                     <td>
-                                        <span class="fw-bold">{{ $data['completed_hiring'] }}</span>    
+                                        <span class="fw-bold">{{ $data['completed_hiring'] }}</span>
                                     </td>
-                                    <td>                                          
+                                    <td>
                                         <a href="{{ route('admin.hiring.completed') }}" class="btn btn-sm btn-outline--info"><i class="las la-eye text--shadow"></i>View</a>
-                                    </td> 
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>
-                                        <span class="fw-bold">@lang('Reported Hiring')</span>    
+                                        <span class="fw-bold">@lang('Reported Hiring')</span>
                                     </td>
                                     <td>
-                                        <span class="fw-bold">{{ $data['reported_hiring'] }}</span>    
+                                        <span class="fw-bold">{{ $data['reported_hiring'] }}</span>
                                     </td>
-                                    <td>                                          
+                                    <td>
                                         <a href="{{ route('admin.hiring.reported') }}" class="btn btn-sm btn-outline--info"><i class="las la-eye text--shadow"></i>View</a>
-                                    </td> 
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>
-                                        <span class="fw-bold">@lang('Cancelled Hiring')</span>    
+                                        <span class="fw-bold">@lang('Cancelled Hiring')</span>
                                     </td>
                                     <td>
-                                        <span class="fw-bold">{{ $data['cancelled_hiring'] }}</span>    
+                                        <span class="fw-bold">{{ $data['cancelled_hiring'] }}</span>
                                     </td>
-                                    <td>                                          
+                                    <td>
                                         <a href="{{ route('admin.hiring.cancelled') }}" class="btn btn-sm btn-outline--info"><i class="las la-eye text--shadow"></i>View</a>
-                                    </td> 
+                                    </td>
                                 </tr>
-                                
+
                                 </tbody>
                             </table>
                         </div>
@@ -229,7 +239,7 @@
                         <a href="{{ route('admin.report.transaction') }}?search={{ $influencer->username }}" class="widget-two__btn">@lang('View All')</a>
                     </div>
                 </div> --}}
-                
+
 
 
                 {{-- <div class="col-xxl-3 col-sm-6">
@@ -244,7 +254,7 @@
                         <a href="{{ route('admin.service.index') }}?search={{ $influencer->username }}" class="widget-two__btn">@lang('View All')</a>
                     </div>
                 </div> --}}
-              
+
 
                 {{-- <div class="col-xxl-3 col-sm-6">
                     <div class="widget-two style--two box--shadow2 b-radius--5 bg--1">
@@ -258,7 +268,7 @@
                         <a href="{{ route('admin.withdraw.log') }}?search={{ $influencer->username }}" class="widget-two__btn">@lang('View All')</a>
                     </div>
                 </div> --}}
-               
+
 
                 {{-- <div class="col-xxl-3 col-sm-6">
                     <div class="widget-two style--two box--shadow2 b-radius--5 bg--17">

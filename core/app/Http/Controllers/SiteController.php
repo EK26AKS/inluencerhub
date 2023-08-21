@@ -270,7 +270,7 @@ class SiteController extends Controller {
         return view($this->activeTemplate . 'service.detail', compact('service', 'pageTitle', 'anotherServices', 'seoContents', 'orderId', 'customPageTitle'));
     }
 
-    public function influencerProfile($name, $id) {
+    public function influencerProfile($id) {
         $influencer              = Influencer::active()->with('education', 'qualification', 'services.category')->findOrFail($id);
         $pageTitle               = 'Influencer Profile';
         $reviews                 = Review::where('influencer_id', $id)->where('order_id', 0)->with('user')->latest()->paginate(10);
@@ -283,8 +283,27 @@ class SiteController extends Controller {
         $social_link   = SocialLink::where('influencer_id', $id)->get();
         // $data['project_link']  = ProjectLink::where('influencer_id', $id)->get();
 
-
         return view($this->activeTemplate . 'influencer.profile', compact('pageTitle', 'influencer', 'data', 'reviews','social_link'));
+    }
+
+
+    public function projectdetails($id)
+    {
+        $projects = SocialLink::where('id', $id)->get();
+        $ids = SocialLink::where('id', $id)->select('influencer_id')->first();
+        //dd($infu);
+        $influencer              = Influencer::active()->with('education', 'qualification', 'services.category')->findOrFail($ids);
+       // dd($influencer);
+        $pageTitle               = 'Influencer Profile';
+        // $reviews                 = Review::where('influencer_id', $ids)->where('order_id', 0)->with('user')->latest()->paginate(10);
+
+        // $data['ongoing_job']   = Order::inprogress()->where('influencer_id', $ids)->count() + Hiring::inprogress()->where('influencer_id', $id)->count();
+        // $data['completed_job'] = Order::completed()->where('influencer_id', $ids)->count() + Hiring::completed()->where('influencer_id', $id)->count();;
+        // $data['queue_job']     = Order::whereIn('status', [2, 3])->where('influencer_id', $ids)->count() + Hiring::whereIn('status', [2, 3])->where('influencer_id', $id)->count();
+        // $data['pending_job']   = Order::pending()->where('influencer_id', $ids)->count() + Hiring::pending()->where('influencer_id', $id)->count();
+
+        // return view('')
+        return view($this->activeTemplate . 'project', compact('projects','pageTitle'));
     }
 
     public function influencers(Request $request) {
@@ -353,13 +372,13 @@ class SiteController extends Controller {
             $influencers = $influencers->where('completed_order', '>', $request->completedJob)->orderBy('completed_order', 'desc');
         }
 
-        if ($request->social) {           
+        if ($request->social) {
             $influencerId = SocialLink::where('social_media','=',$request->social)->select('influencer_id')->get();
             $influencers  = $influencers->whereIn('id', $influencerId);
         }
 
-        if ($request->sortFollowers) {           
-            $influencerId = SocialLink::where('social_media','=',$request->social)->where('followers','>=',$request->followers)->select('influencer_id')->get();
+        if ($request->sortFollowers) {
+            $influencerId = SocialLink::where('social_media','=',$request->social)->where('followers','>',$request->followers)->select('influencer_id')->get();
             $influencers  = $influencers->whereIn('id', $influencerId);
         }
 
@@ -378,4 +397,5 @@ class SiteController extends Controller {
         $file = $path . '/' . $attachment;
         return response()->download($file);
     }
+
 }

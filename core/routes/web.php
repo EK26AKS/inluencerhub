@@ -42,7 +42,9 @@ Route::controller('SiteController')->group(function () {
     Route::get('influencers/category/{id}/{name}', 'influencerByCategory')->name('influencer.category');
     Route::get('influencer/filtered', 'filterInfluencer')->name('influencer.filter');
 
-    Route::get('/influencer/profile/{name}/{id}', 'influencerProfile')->name('influencer.profile');
+    Route::get('/influencer/profile/{id}', 'influencerProfile')->name('influencer.profile');
+    Route::get('influencer/projectdetails/{id}','projectdetails')->name('project.details');
+
 
     Route::get('policy/{slug}/{id}', 'policyPages')->name('policy.pages');
 
@@ -51,5 +53,10 @@ Route::controller('SiteController')->group(function () {
 
     Route::get('/{slug}', 'pages')->name('pages');
     Route::get('/', 'index')->name('home');
+
+
 });
+
+
+
 

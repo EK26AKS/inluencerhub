@@ -9,7 +9,7 @@ use App\Models\Service;
 use App\Models\Influencer;
 use App\Models\SocialLink;
 use App\Models\ProjectLink;
-use App\Models\Social; 
+use App\Models\Social;
 use Google\Service\YouTube;
 use Google_Service_YouTube;
 use Illuminate\Http\Request;
@@ -28,7 +28,7 @@ class ProfileController extends Controller {
     public function profile() {
         $pageTitle    = "Profile Setting";
         $influencer   = Influencer::where('id', authInfluencerId())->with('education', 'qualification', 'socialLink', 'categories')->firstOrFail();
-        
+
         $languageData = config('languages');
         $countries    = json_decode(file_get_contents(resource_path('views/partials/country.json')));
 
@@ -158,7 +158,7 @@ class ProfileController extends Controller {
         $request->validate([
             'social_icon' => 'required',
             'url'         => 'required',
-            'followers'   => 'required|string|max:40',            
+            'followers'   => 'required|string|max:40',
         ]);
 
         $influencerId = authInfluencerId();
@@ -175,7 +175,7 @@ class ProfileController extends Controller {
         $social->social_media = $request->social_media;
         $media =Social::where('id',$social->social_media)->first();
         $social->social_media_name = $media->name;
-      
+
         $social->social_icon = $request->social_icon;
         $social->url         = $request->url;
         $social->followers   = $request->followers;
@@ -198,7 +198,7 @@ class ProfileController extends Controller {
         $request->validate([
            'thumbnail'   => 'required',
           //  'thumbnail'      => ['nullable', 'image', new FileTypeValidate(['jpeg', 'jpg', 'png'])],
-            'proj_url'    => 'required',                       
+            'proj_url'    => 'required',
         ]);
 
        // $influencerId = authInfluencerId();
@@ -217,17 +217,17 @@ class ProfileController extends Controller {
         $social->influencer_id = $request->influencer_id;
         $social->sociallink_id = $request->sociallink_id;
         // $social->thumbnail     = $request->thumbnail;
-        $social->proj_url      = $request->proj_url;     
-       
+        $social->proj_url      = $request->proj_url;
+
         //$social->save();
         if($request->hasfile('thumbnail'))
         {
            $image_file = $request->file('thumbnail');
            $img_extension = $image_file->getClientOriginalExtension();
            $img_filename = time().'.'.$img_extension;
-           $image_file->move('assets/images/thumbnail/',$img_filename);          
-           $social->thumbnail = $img_filename;      
-     
+           $image_file->move('assets/images/thumbnail/',$img_filename);
+           $social->thumbnail = $img_filename;
+
         }
 
         /*if ($request->hasFile('thumbnail')) {
@@ -242,7 +242,7 @@ class ProfileController extends Controller {
         }*/
 
         $social->save();
-        
+
         $notification   = 'Project link added successfully';
         $notify[] = ['success', $notification];
         return back()->withNotify($notify);
@@ -253,15 +253,15 @@ class ProfileController extends Controller {
     {
         $request->validate([
             'thumbnail'   => 'required',
-            'proj_url'    => 'required',                       
+            'proj_url'    => 'required',
         ]);
 
         $social                = ProjectLink::find($id);
         // $social->thumbnail     = $request->thumbnail;
-        $social->proj_url      = $request->proj_url;     
+        $social->proj_url      = $request->proj_url;
 
-        
-        
+
+
         if($request->hasfile('thumbnail'))
         {
            $filepath_img = 'assets/images/thumbnail/'.$social->thumbnail;
@@ -277,7 +277,7 @@ class ProfileController extends Controller {
         }
 
         $social->save();
-        
+
 
         $notification    = 'Project updated successfully';
         $notify[] = ['success', $notification];
@@ -286,14 +286,14 @@ class ProfileController extends Controller {
 
 
 
-    public function removeProjLink($id) 
-    {        
+    public function removeProjLink($id)
+    {
         $social = ProjectLink::find($id);
         $filepath_file = 'assets/images/thumbnail/'.$social->thumbnail;
         if(File::exists($filepath_file))
         {
             File::delete($filepath_file);
-        }    
+        }
         ProjectLink::where("id", $social->id)->delete();
 
         $notification          = 'Project deleted successfully';
@@ -391,7 +391,6 @@ class ProfileController extends Controller {
     }
 
 
-
     public function submitPassword(Request $request) {
 
         $passwordValidation = Password::min(6);
@@ -436,7 +435,7 @@ class ProfileController extends Controller {
     {
         // $f = 'hhh';
         // dd($f);
-        
+
         $client = new Google_Client();
         $client->setClientId(env('GOOGLE_CLIENT_ID'));
         $client->setClientSecret(env('GOOGLE_CLIENT_SECRET'));
@@ -461,14 +460,14 @@ class ProfileController extends Controller {
         if ($request->get('code')) {
             $token = $client->fetchAccessTokenWithAuthCode($request->get('code'));
             $client->setAccessToken($token);
-   
-            $youtube = new Google_Service_YouTube($client);           
+
+            $youtube = new Google_Service_YouTube($client);
             $channel = $youtube->channels->listChannels('snippet,statistics', ['mine' => true])->getItems()[0];
-                 
+
            // dd($channel);
 
             $title = $channel->getSnippet()->getTitle();
-                        
+
             \App\Models\SocialLink::updateOrCreate(
                 [   'channel_id' => $channel->getId()  ],
                 [
@@ -481,7 +480,7 @@ class ProfileController extends Controller {
                 ]
             );
 
-        }   
+        }
         return redirect('/')->with('success', 'YouTube channel details saved successfully!');
     }
 
@@ -492,38 +491,38 @@ class ProfileController extends Controller {
     {
         return Socialite::driver('twitter')->redirect();
     }
-          
+
 
     public function handleTwitterCallback()
     {
         // try {
-        
+
             $user = Socialite::driver('twitter')->user();
-            $u = $user->user;  
-            
+            $u = $user->user;
+
             // $d = $u['followers_count'];
-            //dd($d);  
-            dd($user);  
+            //dd($d);
+            dd($user);
 
             // $finduser = User::where('twitter_id', $user->id)->first();
-         
-            // if($finduser){         
-            //     Auth::login($finduser);        
+
+            // if($finduser){
+            //     Auth::login($finduser);
             //     return redirect()->intended('dashboard');
-         
+
             // }else{
                 $newUser = SocialLink::updateOrCreate(['email' => $user->email],[
                         'name' => $user->name,
-                        // 'twitter_id'=> $user->id,                       
+                        // 'twitter_id'=> $user->id,
                         'follower' => $u['followers_count'],
                         'influencer_id' => authInfluencerId(),
                     ]);
-        
+
         //         Auth::login($newUser);
-        
+
                  return redirect()->intended('dashboard');
         //     }
-        
+
         // } catch (Exception $e) {
         //     dd($e->getMessage());
         // }

@@ -38,7 +38,7 @@ $emptyMsgImage = getContent('empty_message.content', true);
 
 
             <div class="d-flex justify-content-center mt-3 flex-wrap gap-4">
-                <a href="{{ route('influencer.profile', [slug($influencer->username), $influencer->id]) }}" class="btn btn--sm btn--outline-base radius-0">@lang('View Profile')</a>
+                <a href="{{ route('influencer.profile', $influencer->id) }}" class="btn btn--sm btn--outline-base radius-0">@lang('View Profile')</a>
             </div>
 
             <ul class="social-links d-flex justify-content-center flex-wrap">

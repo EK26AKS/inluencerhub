@@ -134,7 +134,10 @@ class ManageInfluencersController extends Controller
         $data['reported_hiring']   = Hiring::reported()->where('influencer_id', $id)->count();
         $data['cancelled_hiring']  = Hiring::cancelled()->where('influencer_id', $id)->count();
 
-        return view('admin.influencers.detail', compact('pageTitle', 'influencer', 'totalWithdrawals', 'totalTransaction', 'countries', 'totalService', 'data'));
+
+        $d = 'hi';
+
+        return view('admin.influencers.detail', compact('pageTitle','d', 'influencer', 'totalWithdrawals', 'totalTransaction', 'countries', 'totalService', 'data'));
     }
 
     public function kycDetails($id)
