@@ -22,26 +22,21 @@ class SocialController extends Controller
     }
 
 
-    // public function getcategory()
-    // {
-
-    // }
-
     public function store(Request $request, $id = 0) {
-        $imageValidate = $id ? 'nullable' : 'required';
+
         $validate = [
-            'name'  => 'required|regex:/^[a-zA-Z]+$/u|max: 40|unique:socials,name,'.$id,          
+            'name'  => 'required|regex:/^[a-zA-Z]+$/u|max: 40|unique:socials,name,'.$id,
         ];
 
         $request->validate($validate);
 
         if($id == 0){
             $social = new Social();
-            $notification = 'Social media added successfully.';           
+            $notification = 'Social media added successfully.';
         }else{
-            $social = Social::findOrFail($id);   
-            $social->status   = $request->status ? 1 : 0;       
-            $notification = 'Updated successfully';        
+            $social = Social::findOrFail($id);
+            $social->status   = $request->status ? 1 : 0;
+            $notification = 'Updated successfully';
         }
 
         $social->name = $request->name;

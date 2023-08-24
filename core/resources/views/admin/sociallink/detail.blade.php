@@ -1,169 +1,273 @@
 @extends('admin.layouts.app')
 @section('panel')
-    <div class="row mb-none-30 justify-content-center">
-        <div class="col-xl-4 col-md-6 mb-30">
-            <div class="card b-radius--10 box--shadow1 overflow-hidden">
-                <div class="card-header">
-                    <h6>@lang('Influencer Information')</h6>
-                </div>
-                <div class="card-body">
-                    <ul class="list-group">
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            @lang('Fullname')
-                            <span class="fw-bold">
-                                <a href="{{ route('admin.influencers.detail', $service->influencer_id) }}">{{ __(@$service->influencer->fullname) }}</a>
-                            </span>
-                        </li>
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            @lang('Username')
-                            <span class="fw-bold">
-                                <a href="{{ route('admin.influencers.detail', $service->influencer_id) }}">{{ __(@$service->influencer->username) }}</a>
-                            </span>
-                        </li>
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            @lang('Email')
-                            <span class="fw-bold">{{ __(@$service->influencer->email) }}</span>
-                        </li>
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            @lang('Mobile')
-                            <span class="fw-bold">{{ __(@$service->influencer->mobile) }}</span>
-                        </li>
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            @lang('Country')
-                            <span class="fw-bold">{{ __(@$service->influencer->address->country) }}</span>
-                        </li>
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            @lang('Balance')
-                            <span class="fw-bold">{{ showAmount(@$service->influencer->balance) }} {{ $general->cur_text }}</span>
-                        </li>
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            @lang('Created_at')
-                            <span class="fw-bold">{{ showDateTime($service->created_at) }}</span>
-                        </li>
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            @lang('Status')
-                            @php echo $service->statusBadge @endphp
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <div class="col-xl-8 col-md-6 mb-30">
-            <div class="card b-radius--10 box--shadow1 overflow-hidden">
-                <div class="card-body">
-                    <h5 class="card-title border-bottom mb-3 pb-2">@lang('Service Information')</h5>
-                    <div class="row gy-3">
-                        <div class="col-md-12">
-                            <h6 class="mb-2">@lang('Category')</h6>
-                            <p>{{ __(@$service->category->name) }}</p>
-                        </div>
-                        <div class="col-md-12">
-                            <h6 class="mb-2">@lang('Title')</h6>
-                            <p>{{ __($service->title) }}</p>
-                        </div>
-                        <div class="col-md-12">
-                            <h6 class="mb-2">@lang('Price')</h6>
-                            <p>{{ getAmount($service->price) }} {{ $general->cur_text }}</p>
-                        </div>
-                        <div class="col-md-12">
-                            <h6 class="mb-2">@lang('Tags')</h6>
-                            @foreach ($service->tags as $tag)
-                                <span>{{ __($tag->name) }} @if (!$loop->last),@endif </span>
-                            @endforeach
-                        </div>
-                        <div class="col-md-12">
-                            <h6 class="mb-2">@lang('Image')</h6>
-                            <img src="{{ getImage(getFilePath('service') . '/' . $service->image, getFileSize('service')) }}" alt="" class="w-50">
-                        </div>
-                        <div class="col-md-12">
-                            <h6 class="mb-2">@lang('Description')</h6>
-                            <p>
-                                @php echo $service->description @endphp
-                            </p>
-                        </div>
-                        <div class="col-md-12">
-                            <h6 class="mb-2">@lang('key Point')</h6>
-                            <ul>
-                                @foreach ($service->key_points as $point)
-                                <li>{{ __($point) }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                        @if (@$service->gallery->count())
-                        <div class="col-md-12">
-                            <h6 class="mb-2">@lang('Images')</h6>
-                            @foreach ($service->gallery as $gallery)
-                                <img src="{{ getImage(getFilePath('service') . '/' . $gallery->image, getFileSize('service')) }}" alt="" class="w-25 m-2">
-                            @endforeach
-                        </div>
-                        @endif
-                    </div>
-                    @if ($service->status == 0)
-                        <div class="row mt-4">
-                            <div class="col-md-12">
-                                <button class="btn btn--success statusBtn" data-status="1" data-id="{{ $service->id }}"><i class="fas fa-check"></i>
-                                    @lang('Approve')
-                                </button>
+    <div class="pt-80 pb-80">
+        <div class="influencer-profile-area">
+            {{-- <div class="container"> --}}
 
-                                <button class="btn btn--danger ms-1 statusBtn" data-status="2" data-id="{{ $service->id }}"><i class="fas fa-ban"></i>
-                                    @lang('Reject')
-                                </button>
+
+            {{-- <h1>Facebook</h1> --}}
+            <div class="full__container">
+                @foreach ($project as $project)
+                    <a href="{{ $project->url }}" target="_blank">
+                        <div class="post">
+                            <div class="post__image"><img src="{{ url('assets/images/thumbnail/' . $project->thumbnail) }}" />
+                                @if ($project->sociallink_id == 1)
+                                    <div class="social__media_icon"><i class="fab fa-youtube"> </i></div>
+                                @elseif($project->sociallink_id == 2)
+                                    <div class="social__media_icon"><i class="fab fa-facebook-f"> </i></div>
+                                @elseif($project->sociallink_id == 3)
+                                    <div class="social__media_icon"><i class="fab fa-twitter"> </i></div>
+                                @elseif($project->sociallink_id == 4)
+                                    <div class="social__media_icon"><i class="fab fa-instagram"> </i></div>
+                                @endif
+                            </div>
+                            <div class="post__content">
+                                {{-- <div class="top__section">
+                            <div class="profile__img"><img
+                                    src="https://www.dropbox.com/s/7zlj89m72yw28d1/3.jpg?raw=1" /></div>
+                            <div class="profile__title">
+                                <h3>John Doe</h3><span>@johnny45</span>
+                            </div>
+                        </div> --}}
+                                <div class="bottom__section">
+                                    <article>
+                                        {{ $project->description }}</article>
+                                    {{-- <ul class="hashtags">
+                                <li>#OnBrand</li>
+                                <li>#event</li>
+                                <li>#volunteers</li>
+                                <li>#volunteering</li>
+                                <li>#eventPlanner</li>
+                                <li>#branding</li>
+                                <li>#conference</li>
+                            </ul> --}}
+                                    <hr />
+                                    <div class="date"><span style="color: #00BCD4; font-weight: 700;">Posted:</span>
+                                        {{ $project->created_at->format('d-m-Y') }}</div>
+
+                                    {{-- <div class="actions" >
+                                <div class="action like"><i class="fas fa-heart"> </i><span>20</span></div>
+                                <div class="action share"><i class="fas fa-share-alt"></i><span>28</span></div>
+                                <div class="action comment"><i class="far fa-comment-alt"></i><span>13</span></div>
+                            </div> --}}
+                                </div>
                             </div>
                         </div>
-                    @endif
-                </div>
-            </div>
-        </div>
-    </div>
+                    </a>
+                @endforeach
 
-    {{-- REJECT MODAL --}}
-    <div id="statusModal" class="modal fade" tabindex="-1" role="dialog">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">@lang('Confirmation Alert!')</h5>
-                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                        <i class="las la-times"></i>
-                    </button>
-                </div>
-                <form action="{{ route('admin.service.status') }}" method="POST">
-                    @csrf
-                    <input type="hidden" name="status">
-                    <div class="modal-body">
-                        <p class="modal-detail"></p>
-                        <div class="form-group admin-feedback">
-                            <label class="fw-bold mt-2">@lang('Reason for Rejection')</label>
-                            <textarea name="admin_feedback" maxlength="255" class="form-control" rows="5">{{ old('admin_feedback') }}</textarea>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn--dark" data-bs-dismiss="modal">@lang('No')</button>
-                        <button type="submit" class="btn btn--primary">@lang('Yes')</button>
-                    </div>
-                </form>
             </div>
+            {{-- End --}}
+
+            {{-- </div> --}}
         </div>
     </div>
 @endsection
+@push('style')
+    <link rel="stylesheet" href="{{ asset('assets/images/extra/ph1.jpeg') }}">
+    <style>
+        .full__container {
+            margin: 20px auto;
+            display: block;
+            max-width: 1080px;
+            columns: 4;
+            column-gap: 10px;
+            padding: 20px;
+        }
 
-@push('script')
-    <script>
-        (function($) {
-            "use strict";
-            $('.statusBtn').on('click', function() {
-                var modal = $('#statusModal');
-                var status = $(this).data('status')
-                modal.find('form').attr('action', `{{ route('admin.service.status', '') }}/${$(this).data('id')}`);
-                modal.find('[name=status]').val(status);
-                if (status == 1) {
-                    $('.modal-detail').text(`@lang('Are you sure to approve this service?')`)
-                    $('.admin-feedback').addClass('d-none')
-                } else {
-                    $('.modal-detail').text(`@lang('Are you sure to reject this service?')`)
-                    $('.admin-feedback').removeClass('d-none')
-                }
-                modal.modal('show');
-            });
-        })(jQuery);
-    </script>
+        .full__container .post {
+            width: 100%;
+            display: block;
+            overflow: hidden;
+            background: #fff;
+            border-radius: 2px;
+            box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.2);
+            margin: 0 0 20px;
+            break-inside: avoid;
+        }
+
+        .full__container .post .post__image {
+            height: 200px;
+            position: relative;
+        }
+
+        .full__container .post .post__image::before {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            display: block;
+            width: 100%;
+            height: 100%;
+            background: black;
+            background: linear-gradient(0deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0) 30%);
+            z-index: 2;
+        }
+
+        .full__container .post .post__image::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            right: 0;
+            display: block;
+            width: 100%;
+            height: 100%;
+            background: black;
+            /* background: linear-gradient(0deg, rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, 0.5) 100%); */
+            /* z-index: 2; */
+        }
+
+        .full__container .post .post__image img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            object-fit: cover;
+            object-position: center;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        .full__container .post .post__image .social__media_icon {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            display: block;
+            width: 20px;
+            height: 20px;
+            overflow: hidden;
+            z-index: 3;
+        }
+
+        .full__container .post .post__image .social__media_icon i {
+            color: #fff;
+            font-size: 1.1rem;
+        }
+
+        .full__container .post .post__content {
+            padding: 15px;
+        }
+
+        .full__container .post .post__content .top__section {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin: 0.2rem 0 1.4rem;
+        }
+
+        .full__container .post .post__content .top__section .profile__img {
+            display: block;
+            overflow: hidden;
+            width: 40px;
+            height: 40px;
+            border-radius: 50px;
+            position: relative;
+            border: 1px solid #3498db;
+        }
+
+        .full__container .post .post__content .top__section .profile__img img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+
+        .full__container .post .post__content .top__section h3,
+        .full__container .post .post__content .top__section span {
+            margin: 0 0 0 0.5rem;
+        }
+
+        .full__container .post .post__content .top__section h3 {
+            font-size: 1.2rem;
+            margin: 0 0 0 0.5rem;
+            color: #353535;
+        }
+
+        .full__container .post .post__content .top__section span {
+            color: rgba(53, 53, 53, 0.7);
+            font-size: 0.9rem;
+        }
+
+        .full__container .post .post__content .bottom__section article {
+            text-transform: capitalize;
+            font-size: 0.8rem;
+            line-height: 1.4;
+            color: rgba(0, 0, 0, 0.9);
+        }
+
+        .full__container .post .post__content .bottom__section article .hashtag {
+            color: #00BCD4;
+            font-weight: 500;
+        }
+
+        .full__container .post .post__content .bottom__section .hashtags {
+            list-style: none;
+            margin: 0.8rem 0;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .full__container .post .post__content .bottom__section .hashtags li {
+            font-size: 0.8rem;
+            margin: 0 0.2rem;
+            color: #000000;
+            font-weight: 200;
+        }
+
+        .full__container .post .post__content .bottom__section .date {
+            color: rgba(0, 0, 0, 0.6);
+            font-size: 0.8rem;
+            /* padding: 0.2rem 0 0.7rem; */
+        }
+
+        .full__container .post .post__content .bottom__section .actions {
+            display: flex;
+        }
+
+        .full__container .post .post__content .bottom__section .actions .action {
+            display: flex;
+            align-items: center;
+            margin: 0 0.7rem 0 0;
+        }
+
+        .full__container .post .post__content .bottom__section .actions .action i {
+            color: rgba(0, 0, 0, 0.7);
+            font-size: 0.8rem;
+        }
+
+        .full__container .post .post__content .bottom__section .actions .action span {
+            color: rgba(0, 0, 0, 0.5);
+            font-size: 0.8rem;
+            margin: 0 0 0 0.3rem;
+        }
+
+        @media screen and (max-width: 1200px) {
+            .full__container {
+                columns: 4;
+            }
+        }
+
+        @media screen and (max-width: 992px) {
+            .full__container {
+                columns: 3;
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            .full__container {
+                columns: 2;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .full__container {
+                columns: 1;
+            }
+        }
+    </style>
 @endpush

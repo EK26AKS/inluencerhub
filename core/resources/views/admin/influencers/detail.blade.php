@@ -40,13 +40,13 @@
                                 </tr>
                                 <tr>
                                     <td>
-                                        <span class="fw-bold">@lang('Social')</span>
+                                        <span class="fw-bold">@lang('Social Media')</span>
                                     </td>
                                     <td>
                                         <span class="fw-bold">Check</span>
                                     </td>
                                     <td>
-                                        <a href="" class="btn btn-sm btn-outline--info"><i class="las la-eye text--shadow"></i>View</a>
+                                        <a href="{{ route('admin.socialproj.index',$influencer->id) }}" class="btn btn-sm btn-outline--info"><i class="las la-eye text--shadow"></i>View</a>
                                     </td>
                                 </tr>
                                 <tr>

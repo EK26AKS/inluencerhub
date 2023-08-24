@@ -119,6 +119,17 @@ Route::middleware('admin')->group(function () {
         Route::post('store/{id?}', 'store')->name('store');
     });
 
+    //Social media project
+    Route::controller('SocialProjectController')->name('socialproj.')->prefix('socialproj')->group(function () {
+        Route::get('/{id}', 'index')->name('index');
+        Route::get('details/{id}', 'details')->name('details');
+    });
+
+        //Social media project
+    Route::controller('FollowerController')->name('follower.')->prefix('follower')->group(function () {
+        Route::get('', 'index')->name('index');
+        Route::post('store/{id?}', 'store')->name('store');
+    });
 
     // Category
     Route::controller('CategoryController')->name('category.')->prefix('categories')->group(function () {
@@ -126,6 +137,7 @@ Route::middleware('admin')->group(function () {
         Route::post('store/{id?}', 'store')->name('store');
         // Route::get('category/list', 'getcategory')->name('category.list');
     });
+
 
     // Manage Service
     Route::controller('ManageServiceController')->name('service.')->prefix('services')->group(function () {

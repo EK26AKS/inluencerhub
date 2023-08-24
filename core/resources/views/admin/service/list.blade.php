@@ -25,7 +25,7 @@
                                     <td>
                                         <span class="fw-bold">
                                             {{ ++$k }}
-                                        </span>                                                                   
+                                        </span>
                                     </td>
                                     <td data-label="@lang('Influencer')">
                                         <span class="fw-bold">{{@$service->influencer->fullname}}</span>

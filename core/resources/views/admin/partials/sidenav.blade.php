@@ -215,6 +215,14 @@
                     </a>
                 </li>
 
+                <li class="sidebar-menu-item  {{menuActive('admin.follower.*')}}">
+                    <a href="{{route('admin.follower.index')}}" class="nav-link"
+                       data-default-url="{{ route('admin.follower.index') }}">
+                       <i class="menu-icon las la-share-alt-square"></i>
+                        <span class="menu-title">@lang('Follower Range') </span>
+                    </a>
+                </li>
+
                 <li class="sidebar-menu-item  {{menuActive('admin.social.*')}}">
                     <a href="{{route('admin.social.index')}}" class="nav-link"
                        data-default-url="{{ route('admin.social.index') }}">
@@ -270,14 +278,14 @@
                                 <a href="{{route('admin.service.rejected')}}" class="nav-link">
                                     <i class="menu-icon las la-dot-circle"></i>
                                     <span class="menu-title">@lang('Rejected Services')</span>
-                                    
+
                                 </a>
                             </li>
                         </ul>
                     </div>
                 </li>
 
-                
+
 
                  <li class="sidebar-menu-item sidebar-dropdown">
                     <a href="javascript:void(0)" class="{{menuActive('admin.orders*',3)}}">
@@ -317,14 +325,14 @@
                                 <a href="{{route('admin.order.jobDone')}}" class="nav-link">
                                     <i class="menu-icon las la-dot-circle"></i>
                                     <span class="menu-title">@lang('Job Done Orders')</span>
-                                    
+
                                 </a>
                             </li>
                             <li class="sidebar-menu-item  {{menuActive('admin.order.completed')}}">
                                 <a href="{{route('admin.order.completed')}}" class="nav-link">
                                     <i class="menu-icon las la-dot-circle"></i>
                                     <span class="menu-title">@lang('Completed Orders')</span>
-                                    
+
                                 </a>
                             </li>
                             <li class="sidebar-menu-item  {{menuActive('admin.order.reported')}}">
@@ -340,7 +348,7 @@
                                 <a href="{{route('admin.order.cancelled')}}" class="nav-link">
                                     <i class="menu-icon las la-dot-circle"></i>
                                     <span class="menu-title">@lang('Cancelled Orders')</span>
-                                    
+
                                 </a>
                             </li>
                         </ul>
@@ -386,14 +394,14 @@
                                 <a href="{{route('admin.hiring.jobDone')}}" class="nav-link">
                                     <i class="menu-icon las la-dot-circle"></i>
                                     <span class="menu-title">@lang('Job Done Hiring')</span>
-                                    
+
                                 </a>
                             </li>
                             <li class="sidebar-menu-item  {{menuActive('admin.hiring.completed')}}">
                                 <a href="{{route('admin.hiring.completed')}}" class="nav-link">
                                     <i class="menu-icon las la-dot-circle"></i>
                                     <span class="menu-title">@lang('Completed Hiring')</span>
-                                    
+
                                 </a>
                             </li>
                             <li class="sidebar-menu-item  {{menuActive('admin.hiring.reported')}}">
@@ -409,7 +417,7 @@
                                 <a href="{{route('admin.hiring.cancelled')}}" class="nav-link">
                                     <i class="menu-icon las la-dot-circle"></i>
                                     <span class="menu-title">@lang('Cancelled Hiring')</span>
-                                    
+
                                 </a>
                             </li>
                         </ul>
@@ -744,7 +752,7 @@
                         <span class="menu-title">@lang('General Setting')</span>
                     </a>
                 </li>
-                
+
                 <li class="sidebar-menu-item {{menuActive('admin.setting.system.configuration')}}">
                     <a href="{{route('admin.setting.system.configuration')}}" class="nav-link">
                         <i class="menu-icon las la-cog"></i>

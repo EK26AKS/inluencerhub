@@ -272,11 +272,16 @@
                 @if ($social_link->count() > 0)
                     @foreach ($social_link as $social_link)
                         <div class="border-card">
-                            @if ($social_link->social_media == 4)
+                            @if ($social_link->social_media == 1)
+                                <div class="col">
+                                    <div class="bg-ico" id="youtube"><i
+                                            class="fab fa-youtube social youtube fa-3x"></i>
+                                    </div>
+                                </div>
+                            @elseif($social_link->social_media == 4)
                                 <div class="col">
                                     <div class="bg-ico" id="instagram"><i
-                                            class="fab fa-instagram social instagram fa-3x"></i>
-                                    </div>
+                                            class="fab fa-instagram social instagram fa-3x"></i></div>
                                 </div>
                             @elseif($social_link->social_media == 3)
                                 <div class="col">
@@ -290,19 +295,13 @@
                                             class="fab fa-twitter social twitter fa-3x"></i>
                                     </div>
                                 </div>
-                            @elseif($social_link->social_media == 1)
-                                <div class="col">
-                                    <div class="bg-ico" id="youtube"><i
-                                            class="fab fa-youtube social youtube fa-3x"></i>
-                                    </div>
-                                </div>
                             @endif
 
 
                             <div class="col">
                                 <ul class="">
                                     <li class="">
-                                        @if ($social_link->social_media == 1)
+                                        @if ($social_link->social_media == 'Youtube')
                                             <div class="font-head justify-content-between">Subscriber</div>
                                         @else
                                             <div class="font-head justify-content-between">Followers</div>
@@ -377,6 +376,349 @@
 
 
 
+
+                {{-- start --}}
+                <div class="border-card">
+                    <div class="col">
+                        <div class="bg-ico" id="youtube">
+                            <i class="fab fa-youtube social youtube fa-3x"></i>
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <ul class="">
+                            <li class="">
+                                <div class="font-head justify-content-between">Subscriber</div>
+                                <div class="font-doc justify-content-between">542K</div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col">
+                        <div class="card-body">
+                            <h6 class="card-title">Completed Project</h6>
+                            <ul class="">
+                                <li class="pt-2"><a href="#" class="card-link"><img
+                                            src="{{ asset('assets/images/extra/ph1.jpeg') }}" width="50px"
+                                            height="50px"> Dapibus ac facilisis in</a></li>
+                                <li class="pt-2"><a href="#" class="card-link"><img
+                                            src="{{ asset('assets/images/extra/ph2.jpeg') }}" width="50px"
+                                            height="50px"> Dapibus ac facilisis in</a></li>
+                                <li class="pt-2"><a href="#" class="card-link"><img
+                                            src="{{ asset('assets/images/extra/ph3.jpeg') }}" width="50px"
+                                            height="50px"> Dapibus ac facilisis in</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card-body justify-content-center">
+                            <h5 class="card-title">Estimate Cost</h5>
+                            <img class="text-center" src="{{ asset('assets/images/extra/rupee.png') }}" height="30px"
+                                width="30px">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="border-card">
+                    <div class="col">
+                        <div class="bg-ico" id="instagram"><i class="fab fa-instagram social instagram fa-3x"></i></div>
+                    </div>
+                    <div class="col">
+                        <ul class="">
+                            <li class="">
+                                <div class="font-head justify-content-between">Followers</div>
+                                <div class="font-doc justify-content-between">52342K</div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col">
+                        <div class="card-body">
+                            <h6 class="card-title">Completed Project</h6>
+                            <ul class="">
+                                <li class="pt-2"><a href="#" class="card-link"><img
+                                            src="{{ asset('assets/images/extra/ph1.jpeg') }}" width="50px"
+                                            height="50px"> Dapibus ac facilisis in</a></li>
+                                <li class="pt-2"><a href="#" class="card-link"><img
+                                            src="{{ asset('assets/images/extra/ph2.jpeg') }}" width="50px"
+                                            height="50px"> Dapibus ac facilisis in</a></li>
+                                <li class="pt-2"><a href="#" class="card-link"><img
+                                            src="{{ asset('assets/images/extra/ph3.jpeg') }}" width="50px"
+                                            height="50px"> Dapibus ac facilisis in</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card-body">
+                            <h5 class="card-title">Estimate Cost</h5>
+                            <img class="center-block" src="{{ asset('assets/images/extra/rupeeyellow.png') }}"
+                                height="30px" width="30px">
+                            <img class="center-block" src="{{ asset('assets/images/extra/rupeegreen.png') }}"
+                                height="30px" width="30px">
+                            <img class="center-block" src="{{ asset('assets/images/extra/rupeeblue.png') }}"
+                                height="30px" width="30px">
+                            <img class="center-block" src="{{ asset('assets/images/extra/rupeered.png') }}"
+                                height="30px" width="30px">
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="border-card">
+                    <div class="col">
+                        <div class="bg-ico" id="facebook"><i class="fab fa-facebook social  facebook fa-3x"></i></div>
+                    </div>
+                    <div class="col">
+                        <ul class="">
+                            <li class="">
+                                <div class="font-head justify-content-between">Followers</div>
+                                <div class="font-doc justify-content-between">52342K</div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col">
+                        <div class="card-body">
+                            <h6 class="card-title">Completed Project</h6>
+                            <ul class="">
+                                <li class="pt-2"><a href="#" class="card-link"><img
+                                            src="{{ asset('assets/images/extra/ph1.jpeg') }}" width="50px"
+                                            height="50px"> Dapibus ac facilisis in</a></li>
+                                <li class="pt-2"><a href="#" class="card-link"><img
+                                            src="{{ asset('assets/images/extra/ph2.jpeg') }}" width="50px"
+                                            height="50px"> Dapibus ac facilisis in</a></li>
+                                <li class="pt-2"><a href="#" class="card-link"><img
+                                            src="{{ asset('assets/images/extra/ph3.jpeg') }}" width="50px"
+                                            height="50px"> Dapibus ac facilisis in</a></li>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card-body">
+                            <h5 class="card-title">Estimate Cost</h5>
+                            <img class="center-block" src="{{ asset('assets/images/extra/rupee.png') }}" height="30px"
+                                width="30px">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="border-card">
+                    <div class="col">
+                        <div class="bg-ico" id="twitter"><i class="fab fa-twitter social twitter fa-3x"></i></div>
+                    </div>
+                    <div class="col">
+                        <ul class="justify-content-between">
+                            <li class="">
+                                <div class="font-head justify-content-between">Followers</div>
+                                <div class="font-doc justify-content-between">52342K</div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col">
+                        <div class="card-body">
+                            <h6 class="card-title">Completed Project</h6>
+                            <ul class="">
+                                <li class="pt-2"><a href="#" class="card-link"><img
+                                            src="{{ asset('assets/images/extra/ph1.jpeg') }}" width="50px"
+                                            height="50px"> Dapibus ac facilisis in</a></li>
+                                <li class="pt-2"><a href="#" class="card-link"><img
+                                            src="{{ asset('assets/images/extra/ph2.jpeg') }}" width="50px"
+                                            height="50px"> Dapibus ac facilisis in</a></li>
+                                <li class="pt-2"><a href="#" class="card-link"><img
+                                            src="{{ asset('assets/images/extra/ph3.jpeg') }}" width="50px"
+                                            height="50px"> Dapibus ac facilisis in</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col justify-content-center">
+                        <div class="card-body">
+                            <h5 class="card-title">Estimate Cost</h5>
+                            <img class="" src="{{ asset('assets/images/extra/rupee.png') }}" height="30px"
+                                width="30px">
+                        </div>
+                    </div>
+                </div>
+                {{-- End --}}
+
+
+
+
+
+                {{-- start 17/08/2023 --}}
+                <svg id="svg-source" height="0" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink" style="position: absolute">
+
+                    <g id="shopping-cart" data-iconmelon="e-commerce icons:7c96e2dece0152dc594d66b260f79db0">
+                        <path
+                            d="M22.463,25.841c0.528,0,0.918-0.429,0.918-0.958v-6.786c0-0.529-0.39-0.958-0.918-0.958c-0.529,0-0.92,0.429-0.92,0.958
+                      v6.786C21.543,25.413,21.934,25.841,22.463,25.841z M18.156,25.841c0.529,0,0.919-0.429,0.919-0.958v-6.786
+                      c0-0.529-0.39-0.958-0.919-0.958s-0.919,0.429-0.919,0.958v6.786C17.237,25.413,17.627,25.841,18.156,25.841z M13.851,25.841
+                      c0.528,0,0.919-0.429,0.919-0.958v-6.786c0-0.529-0.391-0.958-0.919-0.958c-0.529,0-0.919,0.429-0.919,0.958v6.786
+                      C12.932,25.413,13.321,25.841,13.851,25.841z M29.426,8.511h-5.327l-2.731-4.396c-0.342-0.593-0.98-0.961-1.666-0.961
+                      c-0.336,0-0.668,0.089-0.959,0.258c-0.918,0.529-1.233,1.707-0.689,2.647l1.564,2.451h-7.976l1.58-2.475
+                      c0.529-0.917,0.214-2.095-0.704-2.624c-0.292-0.169-0.623-0.258-0.959-0.258c-0.686,0-1.323,0.368-1.655,0.943L7.161,8.511H2.574
+                      C1.155,8.511,0,9.667,0,11.086v1.47c0,1.274,0.934,2.525,2.152,2.728l1.931,11.042c0.03,1.394,1.173,2.519,2.573,2.519h18.605
+                      c1.401,0,2.545-1.125,2.574-2.52l1.921-11.032C31.019,15.128,32,13.862,32,12.556v-1.47C32,9.667,30.845,8.511,29.426,8.511z
+                       M26.615,26.167l-0.009,0.104c0,0.741-0.604,1.344-1.345,1.344H6.656c-0.741,0-1.344-0.603-1.344-1.344L3.407,15.327h25.096
+                      L26.615,26.167z M30.77,12.556c0,0.74-0.603,1.541-1.344,1.541H2.574c-0.741,0-1.344-0.8-1.344-1.541v-1.47
+                      c0-0.741,0.603-1.344,1.344-1.344h5.271l3.113-5.011c0.184-0.318,0.623-0.439,0.944-0.253c0.33,0.19,0.444,0.614,0.268,0.92
+                      L9.396,9.742h12.467l-2.76-4.32c-0.189-0.33-0.076-0.753,0.253-0.944c0.323-0.186,0.756-0.074,0.955,0.27l3.104,4.994h6.011
+                      c0.741,0,1.344,0.603,1.344,1.344V12.556z M9.545,25.841c0.528,0,0.918-0.429,0.918-0.958v-6.786c0-0.529-0.39-0.958-0.918-0.958
+                      c-0.529,0-0.919,0.429-0.919,0.958v6.786C8.626,25.413,9.016,25.841,9.545,25.841z">
+                        </path>
+                    </g>
+                    <g id="credit-card" data-iconmelon="e-commerce icons:c3144b166f93e0f6b73aee04a0a48397">
+                        <path
+                            d="M29.018,4.751H2.981C1.337,4.751,0,6.089,0,7.733v16.534c0,1.644,1.337,2.981,2.981,2.981h26.036
+                      c1.645,0,2.982-1.338,2.982-2.981V7.733C32,6.089,30.662,4.751,29.018,4.751z M30.638,24.267c0,0.893-0.727,1.62-1.621,1.62H2.981
+                      c-0.893,0-1.62-0.727-1.62-1.62V13.603h29.276V24.267z M30.638,10.236H1.362V7.733c0-0.894,0.727-1.62,1.62-1.62h26.036
+                      c0.894,0,1.621,0.727,1.621,1.62V10.236z M8.848,22.494H2.724v1.338h6.124V22.494z M19.043,22.494H9.548v1.338h9.495V22.494z">
+                        </path>
+                    </g>
+                    <g id="gift" data-iconmelon="e-commerce icons:05fa65d254ada5a9cb5c2f1e8d87f02b">
+                        <path
+                            d="M29.084,7.154h-4.807c0.157-0.146,0.731-0.497,0.866-0.678c0.757-1.01,1.016-2.355,0.677-3.51
+                      c-0.473-1.612-1.773-2.575-3.479-2.575c-1.017,0-1.993,0.371-2.546,0.967c-0.759,0.818-2.841,3.57-3.764,4.8
+                      c-0.923-1.23-3.004-3.982-3.764-4.8c-0.553-0.596-1.528-0.967-2.546-0.967c-1.706,0-3.007,0.962-3.479,2.575
+                      c-0.339,1.155-0.08,2.5,0.677,3.51C7.053,6.657,7.5,7.007,7.657,7.154H2.915C1.308,7.154,0,8.462,0,10.07v5.262h1.356v13.362
+                      c0,1.607,1.308,2.915,2.916,2.915h23.435c1.607,0,2.915-1.308,2.915-2.915V15.332H32V10.07C32,8.462,30.692,7.154,29.084,7.154z
+                       M14.281,30.311H4.272c-0.857,0-1.555-0.76-1.555-1.617V15.401h11.563V30.311z M14.281,13.949H1.362V10.07
+                      c0-0.857,0.696-1.555,1.553-1.555h11.366V13.949z M9.456,6.471c-0.731,0-1.221-0.508-1.447-0.811
+                      c-0.498-0.664-0.678-1.571-0.46-2.312c0.423-1.441,1.661-1.597,2.173-1.597c0.729,0,1.303,0.268,1.548,0.532
+                      c0.623,0.671,2.289,2.854,3.301,4.197C12.948,6.477,10.35,6.471,9.456,6.471z M20.792,2.285c0.245-0.265,0.819-0.532,1.548-0.532
+                      c0.513,0,1.75,0.156,2.173,1.597c0.217,0.74,0.037,1.647-0.46,2.311c-0.227,0.303-0.716,0.811-1.447,0.811
+                      c-0.894,0-3.493,0.006-5.115,0.011C18.504,5.139,20.169,2.956,20.792,2.285z M29.26,28.694c0,0.857-0.697,1.617-1.554,1.617h-10.02
+                      v-14.91H29.26V28.694z M30.638,13.949H17.687V8.515h11.397c0.858,0,1.554,0.698,1.554,1.555V13.949z">
+                        </path>
+                    </g>
+                    <g id="package" data-iconmelon="e-commerce icons:de2d76203b2448ee25bda0d82fa73c00">
+                        <path
+                            d="M31.666,7.132l0.028-0.014L16.191,0L0.264,7.285l0.027,0.013v17.39l15.094,7.266V32l0.05-0.023l0.012,0.006l0.006-0.013
+                      l16.283-7.442V7.132H31.666z M16.191,1.415l12.553,5.73l-3.352,1.604L12.535,3.088L16.191,1.415z M1.669,23.879V7.887l13.993,6.388
+                      l0.006,16.256L1.669,23.879z M3.202,7.285L8.223,5.06l12.553,5.897l-4.592,2.195L3.202,7.285z M30.358,23.698l-13.307,6.294
+                      l0.019-15.722l4.873-2.396l0.031,7.692l4.169-2.288V9.777l4.215-2.062V23.698z">
+                        </path>
+                    </g>
+                </svg>
+
+
+                <div id="wrapper">
+                    <div id="left-side">
+                        <ul>
+                            <li class="choose active">
+                                <div class="icon active">
+                                    <svg viewBox="0 0 32 32">
+                                        <g filter="">
+                                            <use xlink:href="#shopping-cart"></use>
+                                        </g>
+                                    </svg>
+                                </div>
+                                facebook
+                            </li>
+                            <li class="pay">
+                                <div class="icon">
+                                    <svg viewBox="0 0 32 32">
+                                        <g filter="">
+                                            <use xlink:href="#credit-card"></use>
+                                        </g>
+                                    </svg>
+                                </div>
+                                twitter
+                            </li>
+                            <li class="wrap">
+                                <div class="icon">
+                                    <svg viewBox="0 0 32 32">
+                                        <g filter="">
+                                            <use xlink:href="#gift"></use>
+                                        </g>
+                                    </svg>
+                                </div>
+                                instagram
+                            </li>
+                            <li class="ship">
+                                <div class="icon">
+                                    <svg viewBox="0 0 32 32">
+                                        <g filter="">
+                                            <use xlink:href="#package"></use>
+                                        </g>
+                                    </svg>
+                                </div>
+                                youtube
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div id="border">
+                        <div id="line" class="one"></div>
+                    </div>
+
+                    <div id="right-side">
+                        <div id="first" class="active">
+                            <div class="icon big">
+                                <svg viewBox="0 0 32 32">
+                                    <g filter="">
+                                        <use xlink:href="#shopping-cart"></use>
+                                    </g>
+                                </svg>
+                            </div>
+
+                            <h1>facebook</h1>
+
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec at viverra est, eu finibus
+                                mauris. Quisque tempus vestibulum fringilla. Morbi tortor eros, sollicitudin eu arcu sit
+                                amet, aliquet sagittis dolor.</p>
+                        </div>
+                        <div id="second">
+                            <div class="icon big">
+                                <svg viewBox="0 0 32 32">
+                                    <g filter="">
+                                        <use xlink:href="#credit-card"></use>
+                                    </g>
+                                </svg>
+                            </div>
+
+                            <h1>twitter</h1>
+
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec at viverra est, eu finibus
+                                mauris. Quisque tempus vestibulum fringilla. Morbi tortor eros, sollicitudin eu arcu sit
+                                amet, aliquet sagittis dolor. </p>
+                        </div>
+                        <div id="third">
+                            <div class="icon big">
+                                <svg viewBox="0 0 32 32">
+                                    <g filter="">
+                                        <use xlink:href="#gift"></use>
+                                    </g>
+                                </svg>
+                            </div>
+
+                            <h1>instagram</h1>
+
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec at viverra est, eu finibus
+                                mauris. Quisque tempus vestibulum fringilla. Morbi tortor eros, sollicitudin eu arcu sit
+                                amet, aliquet sagittis dolor. </p>
+
+                        </div>
+                        <div id="fourth">
+                            <div class="icon big">
+                                <svg viewBox="0 0 32 32">
+                                    <g filter="">
+                                        <use xlink:href="#package"></use>
+                                    </g>
+                                </svg>
+                            </div>
+
+                            <h1>youtube</h1>
+
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec at viverra est, eu finibus
+                                mauris. Quisque tempus vestibulum fringilla. Morbi tortor eros, sollicitudin eu arcu sit
+                                amet, aliquet sagittis dolor. </p>
+
+                        </div>
+                    </div>
+                </div>
+                {{-- End 17/08/2023 --}}
+
+
+
+
+
             </div>
 
         </div>
@@ -393,24 +735,23 @@
                     aria-orientation="vertical">
                     <a class="nav-link mb-3 p-3 shadow active" id="v-pills-home-tab" data-toggle="pill"
                         href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">
-                        <i class="fa fa-facebook mr-2"></i>
-                        <span class="font-weight-bold small text-uppercase">Facebook</span>
-                    </a>
+                        <i class="fa fa-user-circle-o mr-2"></i>
+                        <span class="font-weight-bold small text-uppercase">Personal information</span></a>
 
                     <a class="nav-link mb-3 p-3 shadow" id="v-pills-profile-tab" data-toggle="pill"
                         href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">
                         <i class="fa fa-calendar-minus-o mr-2"></i>
-                        <span class="font-weight-bold small text-uppercase">Twitter</span></a>
+                        <span class="font-weight-bold small text-uppercase">Bookings</span></a>
 
                     <a class="nav-link mb-3 p-3 shadow" id="v-pills-messages-tab" data-toggle="pill"
                         href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">
                         <i class="fa fa-star mr-2"></i>
-                        <span class="font-weight-bold small text-uppercase">Youtube</span></a>
+                        <span class="font-weight-bold small text-uppercase">Reviews</span></a>
 
                     <a class="nav-link mb-3 p-3 shadow" id="v-pills-settings-tab" data-toggle="pill"
                         href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="false">
                         <i class="fa fa-check mr-2"></i>
-                        <span class="font-weight-bold small text-uppercase">Instagram</span></a>
+                        <span class="font-weight-bold small text-uppercase">Confirm booking</span></a>
                 </div>
             </div>
 
@@ -420,165 +761,40 @@
                 <div class="tab-content" id="v-pills-tabContent">
                     <div class="tab-pane fade shadow rounded bg-white show active p-5" id="v-pills-home" role="tabpanel"
                         aria-labelledby="v-pills-home-tab">
-                        <div class="border-card">
-
-                            <div class="col">
-                                <ul class="">
-                                    <li class="">
-                                        <div class="font-head justify-content-between">Subscriber</div>
-                                        <div class="font-doc justify-content-between">542K</div>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="col">
-                                <div class="card-body">
-                                    <h6 class="card-title">Completed Project</h6>
-                                    <ul class="">
-                                        <li class="pt-2"><a href="#" class="card-link"><img
-                                                    src="{{ asset('assets/images/extra/ph1.jpeg') }}" width="50px"
-                                                    height="50px"> Dapibus ac facilisis in</a></li>
-                                        <li class="pt-2"><a href="#" class="card-link"><img
-                                                    src="{{ asset('assets/images/extra/ph2.jpeg') }}" width="50px"
-                                                    height="50px"> Dapibus ac facilisis in</a></li>
-                                        <li class="pt-2"><a href="#" class="card-link"><img
-                                                    src="{{ asset('assets/images/extra/ph3.jpeg') }}" width="50px"
-                                                    height="50px"> Dapibus ac facilisis in</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="col">
-                                <div class="card-body justify-content-center">
-                                    <h5 class="card-title">Estimate Cost</h5>
-                                    <img class="text-center" src="{{ asset('assets/images/extra/rupee.png') }}"
-                                        height="30px" width="30px">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="tab-pane fade shadow rounded bg-white p-5" id="v-pills-profile" role="tabpanel"
-                        aria-labelledby="v-pills-profile-tab">
-                        <div class="row ">
-                            <div class="col-md-12 mx-auto"> <!-- Profile widget -->
-                                <div class="bg-white rounded overflow-hidden">
-                                    <div class="row m-b-r m-t-3 px-4 pt-0 pb-4">
-                                        <div class="col-md-2 offset-md-1">
-                                            <img src="https://mdbootstrap.com/images/avatars/img%20(1).jpg" alt="" class="img-circle img-fluid">
-                                        </div>
-                                        <div class="col-md-9 p-t-2">
-                                            <h2 class="h2-responsive">@abhishek <button type="button"
-                                                    class="btn btn-info-outline waves-effect">Follow</button></h2>
-                                            <p>A K</p>
-                                        </div>
-                                    </div>
-
-                                    <div class="bg-light p-4 d-flex justify-content-end text-center">
-                                        <ul class="list-inline mb-0">
-                                            <li class="list-inline-item">
-                                                <h5 class="font-weight-bold mb-0 d-block">215</h5><small
-                                                    class="text-muted"> <i class="fas fa-image mr-1"></i>Photos</small>
-                                            </li>
-                                            <li class="list-inline-item">
-                                                <h5 class="font-weight-bold mb-0 d-block">745</h5><small
-                                                    class="text-muted"> <i class="fas fa-user mr-1"></i>Followers</small>
-                                            </li>
-                                            <li class="list-inline-item">
-                                                <h5 class="font-weight-bold mb-0 d-block">340</h5><small
-                                                    class="text-muted"> <i class="fas fa-user mr-1"></i>Following</small>
-                                            </li>
-                                        </ul>
-                                    </div>
-
-                                    <div class="py-4 px-4">
-                                        <div class="d-flex align-items-center justify-content-between mb-3">
-                                            <h5 class="mb-0">Recent Projects</h5><a href="#"
-                                                class="btn btn-link text-muted">Show all</a>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-lg-6 mb-2 pr-lg-1"><img
-                                                    src="https://images.unsplash.com/photo-1469594292607-7bd90f8d3ba4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80"
-                                                    alt="" class="img-fluid rounded shadow-sm"></div>
-                                            <div class="col-lg-6 mb-2 pl-lg-1"><img
-                                                    src="https://images.unsplash.com/photo-1493571716545-b559a19edd14?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80"
-                                                    alt="" class="img-fluid rounded shadow-sm"></div>
-                                            <div class="col-lg-6 pr-lg-1 mb-2"><img
-                                                    src="https://images.unsplash.com/photo-1453791052107-5c843da62d97?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80"
-                                                    alt="" class="img-fluid rounded shadow-sm"></div>
-                                            <div class="col-lg-6 pl-lg-1"><img
-                                                    src="https://images.unsplash.com/photo-1475724017904-b712052c192a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80"
-                                                    alt="" class="img-fluid rounded shadow-sm"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <div class="tab-pane fade shadow rounded bg-white p-5" id="v-pills-messages" role="tabpanel"
-                        aria-labelledby="v-pills-messages-tab">
-                        {{-- <h4 class="font-italic mb-4">Youtube</h4>
+                        <h4 class="font-italic mb-4">Personal information</h4>
                         <p class="font-italic text-muted mb-2">Lorem ipsum dolor sit amet, consectetur adipisicing elit,
                             sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
                             nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
                             dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
                             sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est
-                            laborum.</p> --}}
-                        <section id="about-section" class="p-100 pb-2 bg-one-dark">
-                            <div class="container">
-                                <div class="row d-flex align-items-end">
+                            laborum.</p>
+                    </div>
 
-                                    <div class="col-md-12">
+                    <div class="tab-pane fade shadow rounded bg-white p-5" id="v-pills-profile" role="tabpanel"
+                        aria-labelledby="v-pills-profile-tab">
+                        <h4 class="font-italic mb-4">Bookings</h4>
+                        <p class="font-italic text-muted mb-2">Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+                            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
+                            nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
+                            dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+                            sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est
+                            laborum.</p>
+                    </div>
 
-                                        <h2 class="text-white mb-4"><span class="color-base">ABOUT US!</span>
-                                        </h2>
-
-                                        <div class="row">
-                                            <div class="col-md-12 about-bullet">
-                                                <ul class="bullet-check">
-                                                    <li>Different of web development</li>
-                                                    <li>Gun Violence Prevention</li>
-                                                    <li>Eiusmod tempor incidid labore</li>
-                                                </ul>
-                                            </div>
-
-                                        </div>
-
-                                        <div class="wrap-button mt-50">
-                                            <a href="#" class="btn btn-medium btn-inline btn-fill mr-4">Cv
-                                                Download</a>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="about-info-wrap p-100">
-                                    <div class="about-info p-5">
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <h6 class="text-white text-uppercase mb-4">Contact Now</h6>
-                                                <p><i
-                                                        class="fas fa-envelope-open-text mr-2 color-base"></i>freebootstrapui@gmail.com
-                                                </p>
-                                                <p><i class="fas fa-phone-alt mr-2 color-base"></i>+012 345 678 910</p>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <h6 class="text-white text-uppercase mb-4">Address</h6>
-                                                <p><i class="fas fa-map-marker-alt mr-2 color-base"></i>145 heera nager,
-                                                    jaipur ,India
-
-                                                </p>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </section>
+                    <div class="tab-pane fade shadow rounded bg-white p-5" id="v-pills-messages" role="tabpanel"
+                        aria-labelledby="v-pills-messages-tab">
+                        <h4 class="font-italic mb-4">Reviews</h4>
+                        <p class="font-italic text-muted mb-2">Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+                            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
+                            nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
+                            dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+                            sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est
+                            laborum.</p>
                     </div>
 
                     <div class="tab-pane fade shadow rounded bg-white p-5" id="v-pills-settings" role="tabpanel"
                         aria-labelledby="v-pills-settings-tab">
-                        <h4 class="font-italic mb-4">Instagram</h4>
+                        <h4 class="font-italic mb-4">Confirm booking</h4>
                         <p class="font-italic text-muted mb-2">Lorem ipsum dolor sit amet, consectetur adipisicing elit,
                             sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
                             nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
@@ -594,211 +810,15 @@
 @endsection
 
 @push('style')
-    {{-- <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css'>
-<link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'><link rel="stylesheet" href="./style.css"> --}}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    {{-- <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css'> --}}
+
+
+
+    <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css'>
     <style>
-        /* p */
-        .profile-head {
-            transform: translateY(5rem)
-        }
-
-        .cover {
-            background-image: url(https://images.unsplash.com/photo-1530305408560-82d13781b33a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1352&q=80);
-            background-size: cover;
-            background-repeat: no-repeat
-        }
-
-        .profile-photo {
-			width:48px;
-			height:auto;
-		}
-
-        /* p */
-        /* 23 */
-
-        a:hover,
-        a:focus,
-        a:visited {
-            text-decoration: none;
-            outline: none;
-            outline-offset: 0;
-        }
-
-        a:hover {
-            color: #fabf15;
-        }
-
-        i {
-            vertical-align: middle;
-        }
-
-        ul {
-            padding: 0 !important;
-        }
-
-        li {
-            list-style: none;
-        }
-
-        .color-base {
-            color: #fabf15;
-        }
-
-        .bg-one-dark {
-            background: #043f3a !important;
-        }
-
-        .p-100 {
-            padding-top: 100px;
-            padding-bottom: 100px;
-        }
-
-        .mt-50 {
-            margin-top: 50px;
-        }
-
-        .btn {
-            text-transform: uppercase;
-        }
-
-        .btn:focus {
-            box-shadow: none;
-        }
-
-        .btn:hover {
-            color: #fff;
-        }
-
-        .btn-medium {
-            font-family: "Rubik", sans-serif;
-            background: transparent;
-            color: #fabf15;
-            font-weight: 600;
-            font-size: 16px;
-            padding: 14px 45px;
-            border-radius: 4px;
-            border: 1px solid #fabf15;
-            -webkit-transition: all 0.3s ease-in-out;
-            transition: all 0.3s ease-in-out;
-        }
-
-        .btn-medium:hover {
-            background: #fabf15;
-            color: #222;
-            -webkit-box-shadow: 0 20px 35px rgba(0, 0, 0, 0.1);
-            box-shadow: 0 20px 35px rgba(0, 0, 0, 0.1);
-            transform: translateY(-3px);
-            -ms-transform: translateY(-3px);
-            -webkit-transform: translateY(-3px);
-        }
-
-        .btn-fill {
-            background: #fabf15 !important;
-            color: #222 !important;
-        }
-
-        .btn-fill:hover {
-            background: #ffb400;
-            border-color: #ffb400;
-        }
-
-        /* .about-info {
-                        border: 2px solid rgba(255, 255, 255, 0.2);
-                    } */
-
-        #about-section img {
-            position: relative;
-            z-index: 1;
-        }
-
-        .inline-social ul li {
-            display: inline-block;
-            margin-right: 10px;
-        }
-
-        .bullet-check li {
-            position: relative;
-            padding-left: 30px;
-            padding-bottom: 10px;
-            color: #fff;
-        }
-
-        .bullet-check li:last-child {
-            padding-bottom: 0;
-        }
-
-        .bullet-check li:before {
-            position: absolute;
-            content: "\f00c";
-            font-family: "Font Awesome 5 Free";
-            font-weight: 900;
-            font-size: 15px;
-            left: 0;
-        }
-
-        /*! responsive */
-        @media (max-width: 480px) {
-            .about-info-wrap {
-                padding: 10px !important;
-                margin-top: 30px;
-            }
-
-            .about-info {
-                padding: 30px !important;
-            }
-        }
-
-        @media (max-width: 767px) {
-            h2 {
-                font-size: 32px;
-            }
-
-            .wrap-button img {
-                margin-top: 20px;
-            }
-
-            .about-info-wrap {
-                padding: 10px !important;
-                margin-top: 30px;
-            }
-
-            .about-info {
-                padding: 30px !important;
-            }
-        }
-
-        @media (min-width: 768px) and (max-width: 991px) {
-            h2 {
-                font-size: 30px;
-            }
-
-            .wrap-button img {
-                margin-top: 20px;
-            }
-
-            .about-bullet {
-                max-width: 100%;
-                flex: 100%;
-            }
-
-            .about-info-wrap {
-                padding: 10px !important;
-                margin-top: 30px;
-            }
-
-            .about-info {
-                padding: 30px !important;
-            }
-        }
-
-        @media (min-width: 992px) and (max-width: 1199px) {
-            .about-bullet {
-                max-width: 100%;
-                flex: 100%;
-            }
-        }
-
-        /* 23 */
+        /* 22ni */
+        /* 22ni */
         /* 22 */
         .nav-pills-custom .nav-link {
             color: #aaa;
@@ -837,6 +857,221 @@
 
 
 
+        /* Start 17/08/2023 */
+        ul,
+        li {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .icon {
+            position: relative;
+            width: 32px;
+            height: 32px;
+            display: block;
+            fill: rgba(51, 51, 51, 0.5);
+            margin-right: 20px;
+            -webkit-transition: all .2s ease-out;
+            transition: all .2s ease-out;
+        }
+
+        .icon.active {
+            fill: #E74C3C;
+        }
+
+        .icon.big {
+            width: 64px;
+            height: 64px;
+            fill: rgba(51, 51, 51, 0.5);
+        }
+
+        #wrapper {
+            width: 900px;
+            height: 400px;
+            /* position: absolute; */
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin: auto;
+            background-color: #fff;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            -webkit-box-pack: left;
+            -ms-flex-pack: left;
+            justify-content: left;
+            overflow: hidden;
+        }
+
+        #left-side {
+            height: 70%;
+            width: 25%;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            justify-content: center;
+        }
+
+        #left-side ul li {
+            padding-top: 10px;
+            padding-bottom: 10px;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            line-height: 34px;
+            color: rgba(51, 51, 51, 0.5);
+            font-weight: 500;
+            cursor: pointer;
+            -webkit-transition: all .2s ease-out;
+            transition: all .2s ease-out;
+        }
+
+        #left-side ul li:hover {
+            color: #333333;
+            -webkit-transition: all .2s ease-out;
+            transition: all .2s ease-out;
+        }
+
+        #left-side ul li:hover>.icon {
+            fill: #333;
+        }
+
+        #left-side ul li.active {
+            color: #333333;
+        }
+
+        #left-side ul li.active:hover>.icon {
+            fill: #E74C3C;
+        }
+
+        #border {
+            height: 288px;
+            width: 1px;
+            background-color: rgba(51, 51, 51, 0.2);
+        }
+
+        #border #line.one {
+            width: 5px;
+            height: 54px;
+            background-color: #E74C3C;
+            margin-left: -2px;
+            margin-top: 35px;
+            -webkit-transition: all .4s ease-in-out;
+            transition: all .4s ease-in-out;
+        }
+
+        #border #line.two {
+            width: 5px;
+            height: 54px;
+            background-color: #E74C3C;
+            margin-left: -2px;
+            margin-top: 89px;
+            -webkit-transition: all .4s ease-in-out;
+            transition: all .4s ease-in-out;
+        }
+
+        #border #line.three {
+            width: 5px;
+            height: 54px;
+            background-color: #E74C3C;
+            margin-left: -2px;
+            margin-top: 143px;
+            -webkit-transition: all .4s ease-in-out;
+            transition: all .4s ease-in-out;
+        }
+
+        #border #line.four {
+            width: 5px;
+            height: 54px;
+            background-color: #E74C3C;
+            margin-left: -2px;
+            margin-top: 197px;
+            -webkit-transition: all .4s ease-in-out;
+            transition: all .4s ease-in-out;
+        }
+
+        #right-side {
+            height: 300px;
+            width: 75%;
+            overflow: hidden;
+        }
+
+        #right-side #first,
+        #right-side #second,
+        #right-side #third,
+        #right-side #fourth {
+            /* position: absolute; */
+            height: 300px;
+            width: 75%;
+            -webkit-transition: all .6s ease-in-out;
+            transition: all .6s ease-in-out;
+            margin-top: -350px;
+            opacity: 0;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            justify-content: center;
+            -webkit-box-orient: vertical;
+            -webkit-box-direction: normal;
+            -ms-flex-direction: column;
+            flex-direction: column;
+        }
+
+        #right-side #first h1,
+        #right-side #second h1,
+        #right-side #third h1,
+        #right-side #fourth h1 {
+            font-weight: 800;
+            color: #333;
+        }
+
+        #right-side #first p,
+        #right-side #second p,
+        #right-side #third p,
+        #right-side #fourth p {
+            color: #333;
+            font-weight: 500;
+            padding-left: 30px;
+            padding-right: 30px;
+        }
+
+        #right-side #first.active,
+        #right-side #second.active,
+        #right-side #third.active,
+        #right-side #fourth.active {
+            margin-top: 55px;
+            opacity: 1;
+            -webkit-transition: all .6s ease-in-out;
+            transition: all .6s ease-in-out;
+        }
+
+        /* End 17/08/2023 */
+
+
+
+
+
+
+
+
+
+
         .font-head {
             font-weight: 400;
             color: black;
@@ -850,10 +1085,10 @@
         }
 
         /* .center-block {
-                                                                        display: block;
-                                                                        margin-left: auto;
-                                                                        margin-right: auto;
-                                                                    } */
+                                                display: block;
+                                                margin-left: auto;
+                                                margin-right: auto;
+                                            } */
 
 
         .profile .thumb {
@@ -1144,6 +1379,97 @@
     </style>
 @endpush
 @push('script')
-    {{-- <script src='https://code.jquery.com/jquery-3.3.1.slim.min.js'></script> --}}
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.bundle.min.js'></script>
+    <script src='//production-assets.codepen.io/assets/common/stopExecutionOnTimeout-b2a7b3fe212eaa732349046d8416e00a9dec26eb7fd347590fbced3ab38af52e.js'>
+    </script>
+    <script src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+    <script>
+        $(".choose").click(function() {
+            $(".choose").addClass("active");
+            $(".choose > .icon").addClass("active");
+            $(".pay").removeClass("active");
+            $(".wrap").removeClass("active");
+            $(".ship").removeClass("active");
+            $(".pay > .icon").removeClass("active");
+            $(".wrap > .icon").removeClass("active");
+            $(".ship > .icon").removeClass("active");
+            $("#line").addClass("one");
+            $("#line").removeClass("two");
+            $("#line").removeClass("three");
+            $("#line").removeClass("four");
+        })
+
+        $(".pay").click(function() {
+            $(".pay").addClass("active");
+            $(".pay > .icon").addClass("active");
+            $(".choose").removeClass("active");
+            $(".wrap").removeClass("active");
+            $(".ship").removeClass("active");
+            $(".choose > .icon").removeClass("active");
+            $(".wrap > .icon").removeClass("active");
+            $(".ship > .icon").removeClass("active");
+            $("#line").addClass("two");
+            $("#line").removeClass("one");
+            $("#line").removeClass("three");
+            $("#line").removeClass("four");
+        })
+
+        $(".wrap").click(function() {
+            $(".wrap").addClass("active");
+            $(".wrap > .icon").addClass("active");
+            $(".pay").removeClass("active");
+            $(".choose").removeClass("active");
+            $(".ship").removeClass("active");
+            $(".pay > .icon").removeClass("active");
+            $(".choose > .icon").removeClass("active");
+            $(".ship > .icon").removeClass("active");
+            $("#line").addClass("three");
+            $("#line").removeClass("two");
+            $("#line").removeClass("one");
+            $("#line").removeClass("four");
+        })
+
+        $(".ship").click(function() {
+            $(".ship").addClass("active");
+            $(".ship > .icon").addClass("active");
+            $(".pay").removeClass("active");
+            $(".wrap").removeClass("active");
+            $(".choose").removeClass("active");
+            $(".pay > .icon").removeClass("active");
+            $(".wrap > .icon").removeClass("active");
+            $(".choose > .icon").removeClass("active");
+            $("#line").addClass("four");
+            $("#line").removeClass("two");
+            $("#line").removeClass("three");
+            $("#line").removeClass("one");
+        })
+
+        $(".choose").click(function() {
+            $("#first").addClass("active");
+            $("#second").removeClass("active");
+            $("#third").removeClass("active");
+            $("#fourth").removeClass("active");
+        })
+
+        $(".pay").click(function() {
+            $("#first").removeClass("active");
+            $("#second").addClass("active");
+            $("#third").removeClass("active");
+            $("#fourth").removeClass("active");
+        })
+
+        $(".wrap").click(function() {
+            $("#first").removeClass("active");
+            $("#second").removeClass("active");
+            $("#third").addClass("active");
+            $("#fourth").removeClass("active");
+        })
+
+        $(".ship").click(function() {
+            $("#first").removeClass("active");
+            $("#second").removeClass("active");
+            $("#third").removeClass("active");
+            $("#fourth").addClass("active");
+        })
+        //# sourceURL=pen.js
+    </script>
 @endpush

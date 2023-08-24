@@ -9,10 +9,9 @@
                             <thead>
                                 <tr>
                                     <th>@lang('ID')</th>
-                                    <th>@lang('Influencer')</th>
-                                    <th>@lang('Category')</th>
-                                    <th>@lang('Title')</th>
-                                    <th>@lang('Order')</th>
+                                    <th>@lang('SocialMedia')</th>
+                                    <th>@lang('Followers')</th>
+                                    <th>@lang('Link')</th>
                                     @if(request()->routeIs('admin.service.index'))
                                     <th>@lang('Status')</th>
                                     @endif
@@ -20,45 +19,36 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @forelse($services as $k=>$service)
+                                @forelse($social as $k=>$social)
                                 <tr>
                                     <td>
                                         <span class="fw-bold">
                                             {{ ++$k }}
                                         </span>
                                     </td>
-                                    <td data-label="@lang('Influencer')">
-                                        <span class="fw-bold">{{@$service->influencer->fullname}}</span>
-                                        <br>
-                                        <span class="small">
-                                        <a href="{{ route('admin.influencers.detail', @$service->influencer->id) }}"><span>@</span>{{ @$service->influencer->username }}</a>
-                                        </span>
+
+                                    <td data-label="@lang('SocialMedia')">
+                                        <span class="fw-bold">{{@$social->social_media_name}}</span>
                                     </td>
 
-                                    <td data-label="@lang('Category')">
-                                        <span class="fw-bold">{{@$service->category->name}}</span>
+                                    <td data-label="@lang('Followers')">
+                                        <span>{{ $social->followers }}</span>
                                     </td>
 
-                                    <td data-label="@lang('Title')">
-                                        <span>{{ strLimit($service->title,40) }}</span>
+                                    <td data-label="@lang('Followers')">
+                                        <span>{{ strLimit($social->url,30) }}</span>
                                     </td>
 
-                                    <td data-label="@lang('Order')">
-                                        <span> @lang('Total') : {{ getAmount($service->total_order_count) }}</span><br>
-                                        <span> @lang('Done') : {{ getAmount($service->complete_order_count) }}</span><br>
-                                    </td>
-
-                                    @if(request()->routeIs('admin.service.index'))
-                                    <td data-label="@lang('Status')">
-                                        @php echo $service->statusBadge @endphp
-                                    </td>
-                                    @endif
-
+                                    @php
+                                        $project = App\Models\ProjectLink::where('sociallink_id',$social->id)->first();
+                                    @endphp
+                                    @if($project)
                                     <td data-label="@lang('Action')">
-                                        <a href="{{ route('admin.service.detail', $service->id) }}" class="btn btn-sm btn-outline--primary">
+                                        <a href="{{ route('admin.socialproj.details', $social->id) }}" class="btn btn-sm btn-outline--primary">
                                             <i class="las la-desktop text--shadow"></i> @lang('Details')
                                         </a>
                                     </td>
+                                    @endif
 
                                 </tr>
                                 @empty
@@ -70,11 +60,11 @@
                         </table>
                     </div>
                 </div>
-                @if ($services->hasPages())
+                {{-- @if ($services->hasPages())
                 <div class="card-footer py-4">
                     {{ paginateLinks($services) }}
                 </div>
-                @endif
+                @endif --}}
             </div>
         </div>
 
